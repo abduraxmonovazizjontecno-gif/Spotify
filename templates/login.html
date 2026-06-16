@@ -1,323 +1,243 @@
-<style>
-    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap');
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Войти в Spotify - Kenzi Edition</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    .wrap {
-        font-family: 'DM Sans', sans-serif;
-        background: #0b0f19;
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 32px 16px;
-        -webkit-user-select: none;
-        user-select: none;
-    }
+        :root {
+            --bg-base: #000000;
+            --bg-card: #121212;
+            --sp-blue: #2563eb;
+            --sp-blue-hover: #3b82f6;
+            --text-base: #ffffff;
+            --text-subdued: #b3b3b3;
+            --border-input: #727272;
+            --border-input-focus: #ffffff;
+        }
 
-    .card {
-        width: 100%;
-        max-width: 400px;
-        background: #030712;
-        border-radius: 16px;
-        border: 1px solid #1f2937;
-        padding: 40px 36px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    }
+        body, .wrap {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-base);
+            color: var(--text-base);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px 16px;
+            -webkit-user-select: none;
+            user-select: none;
+        }
 
-    .logo-row {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 12px;
-        margin-bottom: 32px;
-        cursor: default;
-    }
+        /* Spotify Login Box Container */
+        .card {
+            width: 100%;
+            max-width: 480px;
+            background-color: var(--bg-card);
+            border-radius: 8px;
+            padding: 48px 56px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+        }
 
-    .logo-icon svg {
-        fill: url(#blue-gradient-login);
-        filter: drop-shadow(0 0 8px rgba(37, 99, 235, 0.6));
-        display: block;
-    }
+        /* Logo Styling */
+        .logo-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 32px;
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
 
-    .logo-text {
-        font-size: 26px;
-        font-weight: 700;
-        color: #fff;
-        letter-spacing: -0.5px;
-    }
+        .logo-icon svg {
+            fill: var(--sp-blue);
+            filter: drop-shadow(0 0 10px rgba(37, 99, 235, 0.4));
+        }
 
-    .section-title {
-        font-size: 11px;
-        font-weight: 700;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        color: #9ca3af;
-        margin-bottom: 18px;
-        text-align: center;
-    }
+        .title-headline {
+            font-size: 28px;
+            font-weight: 800;
+            text-align: center;
+            letter-spacing: -1px;
+            margin-bottom: 32px;
+        }
 
-    .divider {
-        border: none;
-        border-top: 1px solid #1f2937;
-        margin: 24px 0;
-    }
+        /* Form Controls */
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
 
-    .field {
-        margin-bottom: 16px;
-    }
+        .field label {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-base);
+        }
 
-    .field label {
-        display: block;
-        font-size: 12px;
-        font-weight: 500;
-        color: #9ca3af;
-        margin-bottom: 6px;
-        letter-spacing: 0.3px;
-    }
+        .field input {
+            width: 100%;
+            padding: 14px 16px;
+            background-color: #1a1a1a;
+            border: 1px solid var(--border-input);
+            border-radius: 4px;
+            color: var(--text-base);
+            font-size: 15px;
+            font-weight: 500;
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
 
-    .field input {
-        width: 100%;
-        height: 46px;
-        background: #111827;
-        border: 1px solid #1f2937;
-        border-radius: 8px;
-        color: #fff;
-        font-size: 14px;
-        font-family: 'DM Sans', sans-serif;
-        padding: 0 14px;
-        outline: none;
-        transition: all 0.2s ease;
-    }
+        .field input:focus {
+            border-color: var(--border-input-focus);
+            box-shadow: 0 0 0 1px var(--border-input-focus);
+        }
 
-    .field input::placeholder {
-        color: #4b5563;
-    }
+        .field input::placeholder {
+            color: #757575;
+        }
 
-    .field input:focus {
-        border-color: #2563eb;
-        box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
-        background: #0f172a;
-    }
+        /* Links and Extras */
+        .forgot {
+            margin-bottom: 28px;
+            text-align: left;
+        }
 
-    .forgot {
-        text-align: right;
-        margin-bottom: 20px;
-    }
+        .forgot a {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-base);
+            text-decoration: underline;
+        }
 
-    .forgot a {
-        font-size: 12px;
-        color: #9ca3af;
-        text-decoration: none;
-        transition: color 0.15s ease;
-    }
+        .forgot a:hover {
+            color: var(--sp-blue-hover);
+        }
 
-    .forgot a:hover {
-        color: #60a5fa;
-    }
+        /* Action Buttons */
+        .btn-blue {
+            width: 100%;
+            background-color: var(--sp-blue);
+            color: #ffffff;
+            border: none;
+            border-radius: 50px;
+            padding: 14px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.1s ease, background-color 0.2s ease;
+            margin-bottom: 16px;
+        }
 
-    /* --- PREMIUM TUGMALAR --- */
-    .btn-blue {
-        width: 100%;
-        height: 46px;
-        background: linear-gradient(135deg, #2563eb, #3b82f6);
-        border: none;
-        border-radius: 24px;
-        color: #fff;
-        font-size: 14px;
-        font-weight: 700;
-        font-family: 'DM Sans', sans-serif;
-        cursor: pointer;
-        letter-spacing: 0.3px;
-        transition: all 0.2s ease;
-        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
-    }
+        .btn-blue:hover {
+            background-color: var(--sp-blue-hover);
+            transform: scale(1.02);
+        }
 
-    .btn-blue:hover {
-        background: linear-gradient(135deg, #3b82f6, #60a5fa);
-        box-shadow: 0 4px 20px rgba(37, 99, 235, 0.5);
-        transform: translateY(-1px);
-    }
+        .btn-blue:active {
+            transform: scale(0.99);
+        }
 
-    .btn-blue:active, .btn-register:active {
-        transform: scale(0.98);
-    }
+        .divider {
+            border: 0;
+            height: 1px;
+            background-color: #292929;
+            margin: 32px 0;
+        }
 
-    /* Yangi daxshatli Register tugmasi */
-    .btn-register {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        height: 46px;
-        margin-top: 12px;
-        background: transparent;
-        border: 1px solid rgba(37, 99, 235, 0.4);
-        border-radius: 24px;
-        cursor: pointer;
-        transition: all 0.2s ease;
-    }
+        /* Register Area */
+        .register-offer-row {
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-subdued);
+            font-weight: 500;
+        }
 
-    .btn-register a {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        height: 100%;
-        color: #60a5fa;
-        font-size: 14px;
-        font-weight: 600;
-        font-family: 'DM Sans', sans-serif;
-        text-decoration: none;
-        letter-spacing: 0.3px;
-    }
+        .btn-register-link {
+            color: var(--text-base);
+            font-weight: 700;
+            text-decoration: underline;
+            margin-left: 4px;
+        }
 
-    .btn-register:hover {
-        background: rgba(37, 99, 235, 0.08);
-        border-color: #2563eb;
-        box-shadow: 0 0 12px rgba(37, 99, 235, 0.2);
-    }
+        .btn-register-link:hover {
+            color: var(--sp-blue-hover);
+        }
 
-    .btn-register:hover a {
-        color: #fff;
-    }
+        #loginMsg {
+            font-size: 14px;
+            font-weight: 600;
+            text-align: center;
+            margin-top: 12px;
+        }
 
-    .btn-outline {
-        width: 100%;
-        height: 46px;
-        background: rgba(255, 255, 255, 0.02);
-        border: 1px solid #1f2937;
-        border-radius: 24px;
-        color: #fff;
-        font-size: 14px;
-        font-weight: 500;
-        font-family: 'DM Sans', sans-serif;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-        transition: all 0.2s ease;
-        margin-bottom: 12px;
-    }
+        .terms {
+            font-size: 11px;
+            color: var(--text-subdued);
+            text-align: center;
+            line-height: 1.5;
+            margin-top: 24px;
+        }
 
-    .btn-outline:hover {
-        border-color: #4b5563;
-        background: rgba(255, 255, 255, 0.05);
-        transform: translateY(-1px);
-    }
-
-    .or-row {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        margin: 24px 0;
-    }
-
-    .or-line {
-        flex: 1;
-        height: 1px;
-        background: #1f2937;
-    }
-
-    .or-text {
-        font-size: 12px;
-        color: #4b5563;
-        white-space: nowrap;
-    }
-
-    .terms {
-        font-size: 11px;
-        color: #4b5563;
-        text-align: center;
-        margin-top: 20px;
-        line-height: 1.6;
-    }
-
-    .terms a {
-        color: #9ca3af;
-        text-decoration: none;
-        transition: color 0.15s ease;
-    }
-
-    .terms a:hover {
-        color: #60a5fa;
-        text-decoration: underline;
-    }
-</style>
+        .terms a {
+            color: var(--text-subdued);
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
 
 <div class="wrap">
-    <h2 class="sr-only" style="position:absolute;width:10px;height:1px;overflow:hidden;">Kenzi login va ro'yxatdan o'tish sahifasi</h2>
-
     <div class="card">
         <div class="logo-row">
             <div class="logo-icon">
-                <svg width="32" height="32" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <linearGradient id="blue-gradient-login" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stop-color="#2563eb"/>
-                            <stop offset="100%" stop-color="#60a5fa"/>
-                        </linearGradient>
-                    </defs>
-                    <path d="M4 10v4h2v-4H4zm3-4v12h2V6H7zm4-3v18h2V3h-2zm4 5v8h2V8h-2zm3 4v4h2v-4h-2z"/>
+                <svg width="32" height="32" viewBox="0 0 24 24">
+                    <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.586 14.424c-.18.295-.565.387-.86.207-2.377-1.454-5.37-1.783-8.893-.982-.336.075-.67-.136-.746-.472-.075-.336.136-.67.472-.746 3.854-.88 7.15-.507 9.82 1.13.295.178.387.563.207.863zm1.224-2.723c-.226.367-.707.487-1.074.26-2.72-1.672-6.87-2.157-10.08-1.182-.413.125-.847-.107-.972-.52-.125-.413.107-.847.52-.972 3.673-1.114 8.243-.574 11.35 1.334.366.226.486.707.26 1.073zm.106-2.833C14.384 8.71 8.563 8.52 5.175 9.548c-.522.158-1.076-.143-1.234-.665-.158-.522.143-1.076.665-1.234 3.884-1.18 10.31-.96 14.39 1.46.47.28.623.89.343 1.36-.28.47-.89.623-1.36.343z"/>
                 </svg>
             </div>
-            <div class="logo-text">Kenzi</div>
+            <span>Kenzi</span>
         </div>
 
-        <div class="section-title">Ijtimoiy tarmoq orqali</div>
+        <h2 class="title-headline">Войти в Kenzi</h2>
 
-        <button class="btn-outline">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-                <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-                <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
-                <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
-            </svg>
-            Google bilan kirish
-        </button>
-
-        <button class="btn-outline">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="#1877F2">
-                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-            </svg>
-            Facebook bilan kirish
-        </button>
-
-        <div class="or-row">
-            <div class="or-line"></div>
-            <div class="or-text">yoki email bilan</div>
-            <div class="or-line"></div>
+        <div class="field">
+            <label for="loginEmail">Email-адрес</label>
+            <input type="email" placeholder="Email-адрес" id="loginEmail" autocomplete="username"/>
         </div>
 
         <div class="field">
-            <label>Email manzil</label>
-            <input type="email" placeholder="siz@misol.com" id="loginEmail"/>
+            <label for="loginPass">Пароль</label>
+            <input type="password" placeholder="Пароль" id="loginPass" autocomplete="current-password"/>
         </div>
 
-        <div class="field">
-            <label>Parol</label>
-            <input type="password" placeholder="••••••••" id="loginPass"/>
+        <div class="forgot">
+            <a href="#">Забыли пароль?</a>
         </div>
 
-        <div class="forgot"><a href="#">Parolni unutdingizmi?</a></div>
+        <button class="btn-blue" onclick="handleLogin()">Войти</button>
 
-        <button class="btn-blue" onclick="handleLogin()">Kirish</button>
-
-        <button class="btn-register">
-            <a href="{% url 'register' %}">Yangi hisob yarating</a>
-        </button>
-
-        <div id="loginMsg"></div>
+        <div id=\"loginMsg\"></div>
 
         <hr class="divider"/>
 
+        <div class="register-offer-row">
+            <span>Нет аккаунта?</span>
+            <a href="{% url 'register' %}" class="btn-register-link">Зарегистрироваться в Kenzi</a>
+        </div>
+
         <p class="terms">
-            Davom etish orqali siz <a href="#">Foydalanish shartlari</a> va <a href="#">Maxfiylik siyosati</a>ga rozilik bildirasiz.
+            Продолжая, вы соглашаетесь с <a href="#">Условиями использования</a> и <a href="#">Политикой конфиденциальности</a>.
         </p>
     </div>
 </div>
@@ -330,13 +250,14 @@
 
         if (!email || !pass) {
             msg.style.color = '#ef4444';
-            msg.style.marginTop = '14px';
-            msg.textContent = 'Iltimos, barcha maydonlarni to\'ldiring.';
+            msg.textContent = 'Пожалуйста, заполните все поля.';
             return;
         }
 
-        msg.style.color = '#34d399';
-        msg.style.marginTop = '14px';
-        msg.textContent = '✓ Muvaffaqiyatli kirildi!';
+        msg.style.color = '#1ed760';
+        msg.textContent = 'Вход в систему...';
+        // Bu erda sening API yoki form yuborish mantiqlaring ishlaydi
     }
 </script>
+</body>
+</html>
