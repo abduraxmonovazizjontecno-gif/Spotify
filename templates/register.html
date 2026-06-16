@@ -1,0 +1,251 @@
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap');
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    /* Butun ekranni markazlashtirish va fon */
+    .wrap {
+        font-family: 'DM Sans', sans-serif;
+        background: #0b0f19;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 32px 16px;
+        -webkit-user-select: none;
+        user-select: none;
+    }
+
+    /* Kattalashtirilgan va daxshatli premium Register Card */
+    .register-card {
+        width: 100%;
+        max-width: 440px; /* Kattaroq va salobatli qilindi */
+        background: #030712;
+        border-radius: 20px; /* Burchaklari yanada silliq */
+        border: 1px solid rgba(37, 99, 235, 0.15); /* Nozik ko'k kontur */
+        padding: 44px 40px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7),
+                    0 0 40px rgba(37, 99, 235, 0.03); /* Atrofiga mayin neon taraladi */
+        text-align: center;
+        transition: transform 0.3s ease;
+    }
+
+    /* Logo qismi */
+    .logo-row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        margin-bottom: 28px;
+        cursor: default;
+    }
+
+    .logo-icon svg {
+        fill: url(#blue-gradient-reg);
+        filter: drop-shadow(0 0 10px rgba(37, 99, 235, 0.6));
+        display: block;
+    }
+
+    .logo-text {
+        font-size: 28px;
+        font-weight: 700;
+        color: #fff;
+        letter-spacing: -0.5px;
+    }
+
+    /* Sarlavha matnlari */
+    .register-card p {
+        font-size: 14px;
+        color: #9ca3af;
+        line-height: 1.6;
+        margin-bottom: 32px;
+    }
+
+    .register-card p strong {
+        font-size: 22px;
+        color: #ffffff;
+        display: block;
+        margin-top: 6px;
+        letter-spacing: -0.5px;
+        background: linear-gradient(135deg, #ffffff 40%, #60a5fa);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    /* Kattaroq va chiroyli Input Maydonlari */
+    .field {
+        margin-bottom: 20px;
+        text-align: left;
+    }
+
+    .field label {
+        display: block;
+        font-size: 12px;
+        font-weight: 600;
+        color: #9ca3af;
+        margin-bottom: 8px;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+    }
+
+    .field input {
+        width: 100%;
+        height: 52px; /* Balandligi kattalashtirildi, yozishga qulay */
+        background: #0b0f19;
+        border: 1px solid #1f2937;
+        border-radius: 10px;
+        color: #fff;
+        font-size: 15px;
+        font-family: 'DM Sans', sans-serif;
+        padding: 0 16px;
+        outline: none;
+        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .field input::placeholder {
+        color: #4b5563;
+    }
+
+    /* Inputga bosgandagi daxshat effekt */
+    .field input:focus {
+        border-color: #2563eb;
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15),
+                    inset 0 0 8px rgba(37, 99, 235, 0.1);
+        background: #030712;
+    }
+
+    /* ODAM HAVAS QILIB KETADIGAN UDAR TUGMA */
+    .btn-register-submit {
+        width: 100%;
+        height: 52px; /* Kattaroq, baquvvat tugma */
+        background: linear-gradient(135deg, #2563eb, #3b82f6);
+        border: none;
+        border-radius: 26px;
+        color: #fff;
+        font-size: 15px;
+        font-weight: 700;
+        font-family: 'DM Sans', sans-serif;
+        cursor: pointer;
+        letter-spacing: 0.5px;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Elastik effekt */
+        box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);
+        margin-top: 10px;
+    }
+
+    /* Tugmaga sichqoncha kelganda (Hover) */
+    .btn-register-submit:hover {
+        background: linear-gradient(135deg, #3b82f6, #60a5fa);
+        box-shadow: 0 6px 24px rgba(37, 99, 235, 0.6),
+                    0 0 15px rgba(96, 165, 250, 0.3);
+        transform: translateY(-2px); /* Tepaga silliq ko'tariladi */
+    }
+
+    /* TUGMANI BOSGANDA HAVAS QILADIGAN ELASTIK EFFEKT (Active) */
+    .btn-register-submit:active {
+        transform: translateY(1px) scale(0.96); /* Haqiqiy jismoniy tugmadek eziladi */
+        box-shadow: 0 2px 8px rgba(37, 99, 235, 0.4);
+    }
+
+    /* Pastdagi havola (Login sahifasiga qaytish) */
+    .back-to-login {
+        margin-top: 24px;
+        font-size: 13px;
+        color: #9ca3af;
+    }
+
+    .back-to-login a {
+        color: #60a5fa;
+        text-decoration: none;
+        font-weight: 600;
+        transition: color 0.2s;
+    }
+
+    .back-to-login a:hover {
+        color: #2563eb;
+        text-decoration: underline;
+    }
+
+    /* Bildirishnoma xabari */
+    #regMsg {
+        font-size: 13px;
+        text-align: center;
+        margin-top: 16px;
+        min-height: 18px;
+        font-weight: 500;
+    }
+</style>
+
+<div class="wrap">
+    <div class="register-card">
+
+        <div class="logo-row">
+            <div class="logo-icon">
+                <svg width="34" height="34" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="blue-gradient-reg" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#2563eb"/>
+                            <stop offset="100%" stop-color="#60a5fa"/>
+                        </linearGradient>
+                    </defs>
+                    <path d="M4 10v4h2v-4H4zm3-4v12h2V6H7zm4-3v18h2V3h-2zm4 5v8h2V8h-2zm3 4v4h2v-4h-2z"/>
+                </svg>
+            </div>
+            <div class="logo-text">Kenzi</div>
+        </div>
+
+        <p>Musiqa olamiga xush kelibsiz!<br><strong>Bepul ro'yxatdan o'ting</strong></p>
+
+        <div class="field">
+            <label>To'liq ism</label>
+            <input type="text" placeholder="Ism Familiya" id="regName"/>
+        </div>
+
+        <div class="field">
+            <label>Email manzil</label>
+            <input type="email" placeholder="siz@misol.com" id="regEmail"/>
+        </div>
+
+        <div class="field" style="margin-bottom: 28px;">
+            <label>Parol yarating</label>
+            <input type="password" placeholder="Kamida 8 ta belgi" id="regPass"/>
+        </div>
+
+        <button class="btn-register-submit" onclick="handleRegister()">Ro'yxatdan o'tish</button>
+
+        <div id="regMsg"></div>
+
+        <div class="back-to-login">
+            Akkauntingiz bormi? <a href="{% url 'login' %}">Kirish</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    function handleRegister() {
+        const name = document.getElementById('regName').value.trim();
+        const email = document.getElementById('regEmail').value.trim();
+        const pass = document.getElementById('regPass').value.trim();
+        const msg = document.getElementById('regMsg');
+
+        if (!name || !email || !pass) {
+            msg.style.color = '#ef4444'; // Neon qizil
+            msg.textContent = 'Iltimos, barcha maydonlarni to\'tdiring.';
+            return;
+        }
+
+        if (pass.length < 8) {
+            msg.style.color = '#ef4444';
+            msg.textContent = 'Parol kamida 8 ta belgidan iborat bo\'lishi kerak.';
+            return;
+        }
+
+        msg.style.color = '#34d399'; // Premium yashil
+        msg.textContent = '✓ Ro\'yxatdan muvaffaqiyatli o\'tildi!';
+    }
+</script>

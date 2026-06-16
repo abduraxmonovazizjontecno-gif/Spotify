@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kenzi - Favourite Tracks</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --sp-black: #0b0f19;
+            --sp-dark: #111827;
+            --sp-card: #1f2937;
+            --sp-blue: #2563eb;
+            --sp-blue-hover: #3b82f6;
+            --sp-gray: #9ca3af;
+            --sp-white: #ffffff;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: linear-gradient(180deg, #1e3a8a 0%, var(--sp-black) 40%);
+            color: var(--sp-white);
+            min-height: 100vh;
+            padding: 40px 32px;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        /* Orqaga qaytish navigatsiyasi */
+        .back-nav {
+            margin-bottom: 32px;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(3, 7, 18, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--sp-white);
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .back-btn:hover {
+            background: rgba(3, 7, 18, 0.9);
+            transform: translateX(-4px);
+        }
+
+        /* Banner qismi */
+        .fav-header {
+            display: flex;
+            align-items: flex-end;
+            gap: 28px;
+            margin-bottom: 40px;
+        }
+
+        .fav-cover {
+            width: 192px;
+            height: 192px;
+            background: linear-gradient(135deg, #2563eb, #60a5fa);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 84px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .fav-info h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: -1px;
+        }
+
+        .fav-info p {
+            color: var(--sp-gray);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        /* Qo'shiqlar jadvali */
+        .tracks-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        .tracks-table th {
+            color: var(--sp-gray);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 12px 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .tracks-table tr {
+            transition: background 0.2s;
+            border-radius: 6px;
+        }
+
+        .tracks-table tbody tr:hover {
+            background: rgba(255, 255, 255, 0.05);
+            cursor: pointer;
+        }
+
+        .tracks-table td {
+            padding: 12px 16px;
+            font-size: 14px;
+            vertical-align: middle;
+        }
+
+        .track-index {
+            color: var(--sp-gray);
+            width: 50px;
+        }
+
+        .track-title-cell {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .track-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--sp-card);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .track-meta-data {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .track-title-name {
+            font-weight: 700;
+            color: var(--sp-white);
+        }
+
+        .track-artist-name {
+            color: var(--sp-gray);
+            font-size: 13px;
+        }
+
+        .track-date {
+            color: var(--sp-gray);
+        }
+
+        .action-cell {
+            text-align: right;
+            width: 60px;
+        }
+
+        .remove-fav-btn {
+            background: none;
+            border: none;
+            color: #ef4444;
+            cursor: pointer;
+            padding: 8px;
+            transition: transform 0.2s;
+        }
+
+        .remove-fav-btn:hover {
+            transform: scale(1.2);
+        }
+
+        .remove-fav-btn svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+
+        /* Bo'sh holat */
+        .empty-state {
+            text-align: center;
+            padding: 60px 0;
+            color: var(--sp-gray);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="back-nav">
+        <a href="{% url 'menu' %}" class="back-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+            Back to Home
+        </a>
+    </div>
+
+    <div class="fav-header">
+        <div class="fav-cover">💙</div>
+        <div class="fav-info">
+            <p>PLAYLIST</p>
+            <h1>Favourite Tracks</h1>
+            <p id="track-count">{{ tracks|length }} songs</p>
+        </div>
+    </div>
+
+    <table class="tracks-table">
+        <thead>
+            <tr>
+                <th class="track-index">#</th>
+                <th>Title</th>
+                <th>Date Added</th>
+                <th class="action-cell"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for track in tracks %}
+            <tr onclick="playTrack({{ forloop.counter0 }})">
+                <td class="track-index">{{ forloop.counter }}</td>
+                <td>
+                    <div class="track-title-cell">
+                        <div class="track-icon">{{ track.icon }}</div>
+                        <div class="track-meta-data">
+                            <span class="track-title-name">{{ track.title }}</span>
+                            <span class="track-artist-name">{{ track.artist }}</span>
+                        </div>
+                    </div>
+                </td>
+                <td class="track-date">{{ track.created_at|date:"M d, Y" }}</td>
+                <td class="action-cell" onclick="event.stopPropagation();">
+                    <button class="remove-fav-btn" title="Remove from Favorites" onclick="removeFromFavorites({{ track.id }}, this)">
+                        <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                    </button>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4" class="empty-state">
+                    <p style="font-size: 16px; margin-bottom: 8px;">No favorite tracks yet.</p>
+                    <p style="font-size: 13px;">Click the heart icon on any song to add it here!</p>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <script>
+        // Agar bu sahifadan ham qo'shiqni to'g'ridan-to'g'ri chalishni xohlasangiz
+        // pleyer funksiyalarini bu yerga ham integratsiya qilish mumkin.
+        function playTrack(index) {
+            console.log("Playing track index:", index);
+            // Pleyer bilan bog'lash mantiqi
+        }
+
+        function removeFromFavorites(trackId, element) {
+            // Sevimlilardan o'chirish funksiyasi (Backend API ga so'rov yuborish uchun)
+            if(confirm("Ushbu qo'shiqni sevimlilardan o'chirmoqchimisiz?")) {
+                const row = element.closest('tr');
+                row.style.opacity = '0';
+                setTimeout(() => {
+                    row.remove();
+                    // Qo'shiqlar sonini yangilash
+                    const countEl = document.getElementById('track-count');
+                    const currentCount = parseInt(countEl.innerText);
+                    countEl.innerText = (currentCount - 1) + " songs";
+                }, 300);
+            }
+        }
+    </script>
+</body>
+</html>
