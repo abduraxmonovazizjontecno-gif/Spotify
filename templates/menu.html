@@ -43,7 +43,7 @@
             background: #000000;
         }
 
-        /* Spotify uslubidagi mukammal Sidebar */
+        /* Sidebar */
         .sidebar {
             background: var(--sp-black);
             padding: 20px 12px;
@@ -151,7 +151,7 @@
             background: rgba(255, 255, 255, 0.05);
         }
 
-        /* Main oyna - Haqiqiy Spotify muhiti */
+        /* Main oyna */
         .main {
             background: linear-gradient(180deg, #1e3a8a 0%, var(--sp-black) 40%);
             overflow-y: auto;
@@ -204,11 +204,11 @@
         .greeting {
             font-size: 32px;
             font-weight: 700;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
             letter-spacing: -0.5px;
         }
 
-        /* 6 talik Quick Picks dizayni (Spotify uslubida o'ta udar holatda) */
+        /* 6 talik Quick Picks dizayni */
         .quick-picks {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -259,42 +259,9 @@
             text-overflow: ellipsis;
         }
 
-        /* Hoverda chiqadigan Play tugmasi */
-        .quick-play-btn {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            background: var(--sp-blue);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transform: translateY(8px);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-            flex-shrink: 0;
-        }
-
-        .quick-play-btn svg {
-            width: 20px;
-            height: 20px;
-            fill: #fff;
-            margin-left: 2px;
-        }
-
-        .quick-card:hover .quick-play-btn {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .quick-play-btn:hover {
-            background: var(--sp-blue-hover);
-            transform: scale(1.06) !important;
-        }
-
-        /* Albomlar griddi */
+        /* Spotify Grid uslubi */
         .section-title {
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 700;
             margin: 32px 0 16px 0;
             display: flex;
@@ -313,41 +280,59 @@
             text-decoration: underline;
         }
 
-        .album-grid {
+        .spotify-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
-            gap: 18px;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 16px;
         }
 
-        .album-card {
+        /* KARTOCHKA ASOSIY BLOKI */
+        .spotify-card {
             background: #121824;
             border-radius: 8px;
-            padding: 16px;
+            padding: 14px;
             cursor: pointer;
+            position: relative;
             transition: background 0.3s ease;
         }
 
-        .album-card:hover {
+        .spotify-card:hover {
             background: #1f2937;
         }
 
-        .album-art {
+        .card-img-wrapper {
             width: 100%;
             aspect-ratio: 1;
             border-radius: 6px;
-            margin-bottom: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 48px;
+            margin-bottom: 12px;
             position: relative;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            overflow: hidden;
+            background: #1f2937;
+            transition: filter 0.3s ease;
         }
 
+        .spotify-card:hover .card-img-wrapper {
+            filter: brightness(0.85);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Artistlar uchun dumaloq rasm */
+        .artist-circle {
+            border-radius: 50% !important;
+        }
+
+        /* TINIQ VA AKURATNO SPOTIFY PLAY TUGMASI */
         .play-btn-overlay {
             position: absolute;
-            bottom: 8px;
-            right: 8px;
+            bottom: 75px;
+            right: 22px;
             width: 48px;
             height: 48px;
             border-radius: 50%;
@@ -357,24 +342,31 @@
             justify-content: center;
             opacity: 0;
             transform: translateY(8px);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            transition: transform 0.25s cubic-bezier(0.3, 0, 0, 1), opacity 0.25s ease, background-color 0.2s ease;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+            z-index: 15;
         }
 
         .play-btn-overlay svg {
             width: 22px;
             height: 22px;
             fill: #fff;
-            margin-left: 2px;
+            margin-left: 3px;
         }
 
-        .album-card:hover .play-btn-overlay {
+        .spotify-card:hover .play-btn-overlay {
             opacity: 1;
             transform: translateY(0);
         }
 
-        .album-name {
-            font-size: 16px;
+        .play-btn-overlay:hover {
+            background: var(--sp-blue-hover) !important;
+            transform: scale(1.05) !important;
+            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4);
+        }
+
+        .card-title {
+            font-size: 15px;
             font-weight: 700;
             margin-bottom: 4px;
             white-space: nowrap;
@@ -382,15 +374,15 @@
             text-overflow: ellipsis;
         }
 
-        .album-artist {
-            font-size: 14px;
+        .card-subtitle {
+            font-size: 13px;
             color: var(--sp-gray);
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
         }
 
-        /* Qidiruv oynasi dizayni */
+        /* Qidiruv */
         .search-container {
             display: none;
         }
@@ -413,20 +405,7 @@
             outline: none;
         }
 
-        .search-input:focus {
-            border-color: rgba(255,255,255,0.2);
-            background: #2a374a;
-        }
-
-        .search-icon-inside {
-            position: absolute;
-            left: 16px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--sp-gray);
-        }
-
-        /* Professional Player Bar dizayni (Xuddi original Spotify) */
+        /* Player Bar */
         .player-bar {
             grid-column: 1 / -1;
             background: #000000;
@@ -446,6 +425,15 @@
             width: 56px;
             height: 56px;
             border-radius: 4px;
+            flex-shrink: 0;
+            object-fit: cover;
+        }
+
+        .track-thumb-placeholder {
+            width: 56px;
+            height: 56px;
+            border-radius: 4px;
+            background: linear-gradient(135deg, #2563eb, #60a5fa);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -479,12 +467,6 @@
             color: var(--sp-gray);
             cursor: pointer;
             padding: 4px;
-            transition: all 0.2s;
-        }
-
-        .like-btn:hover {
-            color: var(--sp-white);
-            transform: scale(1.05);
         }
 
         .like-btn.liked {
@@ -515,14 +497,10 @@
             border: none;
             color: var(--sp-gray);
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: color 0.2s;
         }
 
-        .ctrl-btn:hover {
-            color: var(--sp-white);
+        .ctrl-btn.active {
+            color: var(--sp-blue-light);
         }
 
         .ctrl-btn svg {
@@ -531,30 +509,16 @@
             fill: currentColor;
         }
 
-        .ctrl-btn.active {
-            color: var(--sp-blue-light);
-        }
-
         .play-main-btn {
             width: 36px;
             height: 36px;
             border-radius: 50%;
             background: var(--sp-white);
             border: none;
-            color: #000;
-            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: transform 0.1s ease;
-        }
-
-        .play-main-btn:hover {
-            transform: scale(1.06);
-        }
-
-        .play-main-btn:active {
-            transform: scale(0.95);
+            cursor: pointer;
         }
 
         .play-main-btn svg {
@@ -574,7 +538,6 @@
         .time {
             font-size: 11px;
             color: var(--sp-gray);
-            min-width: 30px;
         }
 
         .progress-bar-container {
@@ -587,7 +550,6 @@
             height: 4px;
             background: #4b5563;
             border-radius: 2px;
-            position: relative;
             width: 100%;
         }
 
@@ -596,23 +558,6 @@
             background: var(--sp-white);
             border-radius: 2px;
             width: 0%;
-            position: relative;
-        }
-
-        /* Slayder hover effekti */
-        .progress-bar-container:hover .progress-fill {
-            background: var(--sp-blue-light);
-        }
-
-        .progress-bar-container:hover .progress-fill::after {
-            content: '';
-            position: absolute;
-            right: -6px;
-            top: -4px;
-            width: 12px;
-            height: 12px;
-            background: var(--sp-white);
-            border-radius: 50%;
         }
 
         .vol-row {
@@ -634,7 +579,6 @@
             height: 4px;
             background: #4b5563;
             border-radius: 2px;
-            position: relative;
         }
 
         .vol-fill {
@@ -642,15 +586,6 @@
             width: 70%;
             background: var(--sp-white);
             border-radius: 2px;
-        }
-
-        .vol-bar-container:hover .vol-fill {
-            background: var(--sp-blue-light);
-        }
-
-        /* Login Button dizayni */
-        .login-anchor {
-            text-decoration: none;
         }
 
         .premium-login-btn {
@@ -662,23 +597,6 @@
             font-weight: 700;
             color: #000;
             cursor: pointer;
-            transition: transform 0.2s;
-        }
-
-        .premium-login-btn:hover {
-            transform: scale(1.04);
-        }
-
-        /* Scrollbar sozlamalari */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: rgba(255, 255, 255, 0.2);
         }
     </style>
 </head>
@@ -699,33 +617,32 @@
                 </svg>
                 Kenzi
             </div>
-
             <nav class="nav-section">
                 <div class="nav-item active" id="nav-home" onclick="showSection('home')">
-                    <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                    <svg viewBox="0 0 24 24">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                        <polyline points="9 22 9 12 15 12 15 22"/>
+                    </svg>
                     Home
                 </div>
                 <div class="nav-item" id="nav-search" onclick="showSection('search')">
-                    <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    <svg viewBox="0 0 24 24">
+                        <circle cx="11" cy="11" r="8"/>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                    </svg>
                     Search
                 </div>
             </nav>
         </div>
 
         <div class="sidebar-box" style="flex: 1;">
-            <div class="library-header">
-                <span>📚 Your Library</span>
-            </div>
+            <div class="library-header"><span>📚 Your Library</span></div>
             <div class="playlist-list">
                 {% for category in categories %}
-                    <div class="playlist-item" onclick="showSection('home'); document.getElementById('cat-{{ category.id }}').scrollIntoView({behavior: 'smooth'});">
-                        🎵 <span>{{ category.name }}</span>
-                    </div>
+                    <div class="playlist-item">🎵 <span>{{ category.name }}</span></div>
                 {% empty %}
-                    <div class="playlist-item" onclick="window.location.href='{% url 'favourite' %}'">
-                        💙 <span>Favorite Tracks</span>
+                    <div class="playlist-item" onclick="window.location.href='{% url 'favourite' %}'">💙 <span>Favorite Tracks</span>
                     </div>
-                    <div class="playlist-item">🌙 <span>Late Night Vibe</span></div>
                 {% endfor %}
             </div>
         </div>
@@ -734,11 +651,18 @@
     <main class="main">
         <div class="main-header">
             <div class="nav-arrows">
-                <button class="arrow-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="15 18 9 12 15 6"/></svg></button>
-                <button class="arrow-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="9 18 15 12 9 6"/></svg></button>
+                <button class="arrow-btn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                        <polyline points="15 18 9 12 15 6"/>
+                    </svg>
+                </button>
+                <button class="arrow-btn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                        <polyline points="9 18 15 12 9 6"/>
+                    </svg>
+                </button>
             </div>
-
-            <a href="{% url 'login' %}" class="login-anchor">
+            <a href="{% url 'login' %}">
                 <button class="premium-login-btn">Premium Login</button>
             </a>
         </div>
@@ -752,119 +676,180 @@
                         <div class="quick-img" style="background: linear-gradient(135deg, #1e3a8a, #3b82f6);">🎶</div>
                         <div class="quick-title">Favorite Tracks</div>
                     </div>
-                    <div class="quick-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-                </div>
-                <div class="quick-card" onclick="safePlayFromQuick(1)">
-                    <div class="quick-card-left">
-                        <div class="quick-img" style="background: linear-gradient(135deg, #0f172a, #1e2937);">🎸</div>
-                        <div class="quick-title">Rock Legends</div>
-                    </div>
-                    <div class="quick-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-                </div>
-                <div class="quick-card" onclick="safePlayFromQuick(2)">
-                    <div class="quick-card-left">
-                        <div class="quick-img" style="background: linear-gradient(135deg, #1d4ed8, #2563eb);">🌿</div>
-                        <div class="quick-title">Uzbek Pop Hits</div>
-                    </div>
-                    <div class="quick-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
                 </div>
             </div>
 
-            {% for category in categories %}
-                <div class="category-block" id="cat-{{ category.id }}">
-                    <div class="section-title">{{ category.name }} <span>See all</span></div>
-                    <div class="album-grid">
-                        {% for track in category.tracks.all %}
-                            <div class="album-card" onclick="playTrackByDbId({{ track.id }})">
-                                <div class="album-art" style="background: linear-gradient(135deg, #1e40af, #3b82f6);">
-                                    {{ track.icon }}
-                                    <div class="play-btn-overlay">
-                                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                                    </div>
+            <div class="section-title">Ommabop Qo'shiqlar <span>See all</span></div>
+            <div class="spotify-grid">
+                {% for track in tracks %}
+                    <div class="spotify-card" onclick="playTrackByDbId({{ track.id }})">
+                        <div class="card-img-wrapper">
+                            {% if track.icon %}
+                                <img src="{{ track.icon.url }}" alt="{{ track.title }}" class="card-img">
+                            {% else %}
+                                <div style="width:100%; height:100%; background:#2563eb; display:flex; align-items:center; justify-content:center; font-size:32px;">
+                                    🎵
                                 </div>
-                                <div class="album-name">{{ track.title }}</div>
-                                <div class="album-artist">{{ track.artist }}</div>
-                            </div>
-                        {% empty %}
-                            <p style="color: var(--sp-gray); padding: 10px; font-size: 13px;">Hozircha qo'shiq yuklanmagan.</p>
-                        {% endfor %}
+                            {% endif %}
+                        </div>
+                        <div class="play-btn-overlay"
+                             onclick="event.stopPropagation(); playTrackByDbId({{ track.id }})">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                        </div>
+                        <div class="card-title">{{ track.title }}</div>
+                        <div class="card-subtitle">{{ track.artist }}</div>
                     </div>
-                </div>
-            {% empty %}
-                <div class="section-title">Recommended For You <span>See all</span></div>
-                <div class="album-grid">
-                    <p style="color: var(--sp-gray); padding: 10px;">Django Admin paneldan Kategoriya va Qo'shiqlar qo'shing!</p>
-                </div>
-            {% endfor %}
+                {% empty %}
+                    <p style="color: var(--sp-gray); font-size: 13px; padding: 10px;">Qo'shiqlar yuklanmagan.</p>
+                {% endfor %}
+            </div>
+
+            <div class="section-title">Mashhur Ijrochilar <span>See all</span></div>
+            <div class="spotify-grid">
+                {% for artist in artists %}
+                    <div class="spotify-card">
+                        <div class="card-img-wrapper artist-circle">
+                            {% if artist.image %}
+                                <img src="{{ artist.image.url }}" alt="{{ artist.name }}" class="card-img">
+                            {% else %}
+                                <div style="width:100%; height:100%; background:#1f2937; display:flex; align-items:center; justify-content:center; font-size:32px;">
+                                    🎤
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="play-btn-overlay">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                        </div>
+                        <div class="card-title" style="text-align: center;">{{ artist.name }}</div>
+                        <div class="card-subtitle" style="text-align: center;">Ijrochi</div>
+                    </div>
+                {% empty %}
+                    <p style="color: var(--sp-gray); font-size: 13px; padding: 10px;">Ijrochilar yuklanmagan.</p>
+                {% endfor %}
+            </div>
+
+            <div class="section-title">Yangi Albomlar <span>See all</span></div>
+            <div class="spotify-grid">
+                {% for album in albums %}
+                    <div class="spotify-card">
+                        <div class="card-img-wrapper">
+                            {% if album.cover %}
+                                <img src="{{ album.cover.url }}" alt="{{ album.title }}" class="card-img">
+                            {% else %}
+                                <div style="width:100%; height:100%; background:#4b5563; display:flex; align-items:center; justify-content:center; font-size:32px;">
+                                    💿
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="play-btn-overlay">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                        </div>
+                        <div class="card-title">{{ album.title }}</div>
+                        <div class="card-subtitle">{{ album.artist.name }}</div>
+                    </div>
+                {% empty %}
+                    <p style="color: var(--sp-gray); font-size: 13px; padding: 10px;">Albomlar yuklanmagan.</p>
+                {% endfor %}
+            </div>
         </div>
 
         <div class="main-content search-container" id="search-content">
             <div class="greeting">Search</div>
             <div class="search-box-wrapper">
-                <svg class="search-icon-inside" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                <input type="text" id="search-input-field" class="search-input" placeholder="What do you want to listen to?" oninput="handleSearch(this.value)">
+                <input type="text" id="search-input-field" class="search-input"
+                       placeholder="What do you want to listen to?" oninput="handleSearch(this.value)">
             </div>
-
-            <div class="section-title" id="search-result-title">Songs & Artists</div>
-            <div class="album-grid" id="search-results-grid">
-                <p style="color: var(--sp-gray); padding: 10px; font-size: 14px;">Type above to start searching...</p>
-            </div>
+            <div class="spotify-grid" id="search-results-grid"></div>
         </div>
     </main>
 
     <footer class="player-bar">
         <div class="track-info">
-            <div class="track-thumb" id="current-track-thumb" style="background: linear-gradient(135deg, #2563eb, #60a5fa);">🎵</div>
+            <img src="" alt="" class="track-thumb" id="current-track-thumb" style="display: none;">
+            <div id="current-track-thumb-placeholder" class="track-thumb-placeholder">🎵</div>
             <div class="track-meta">
                 <div class="track-name" id="current-track-name">Qo'shiq tanlanmagan</div>
                 <div class="track-artist" id="current-track-artist">Ijrochi</div>
             </div>
             <button class="like-btn" onclick="this.classList.toggle('liked')">
-                <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
             </button>
         </div>
 
         <div class="player-controls">
             <div class="controls-row">
-                <button class="ctrl-btn" id="shuffle-btn" onclick="toggleShuffle()" title="Shuffle">
-                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/><line x1="4" y1="4" x2="9" y2="9"/></svg>
+                <button class="ctrl-btn" id="shuffle-btn" onclick="toggleShuffle()">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="16 3 21 3 21 8"/>
+                        <line x1="4" y1="20" x2="21" y2="3"/>
+                        <polyline points="21 16 21 21 16 21"/>
+                        <line x1="15" y1="15" x2="21" y2="21"/>
+                        <line x1="4" y1="4" x2="9" y2="9"/>
+                    </svg>
                 </button>
-                <button class="ctrl-btn" onclick="prevTrack()"><svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg></button>
-                <button class="play-main-btn" id="play-pause-btn" onclick="togglePlay()"><svg id="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
-                <button class="ctrl-btn" onclick="nextTrack()"><svg viewBox="0 0 24 24"><path d="M7 6l8.5 6L7 18zm9 0h2v12h-2z"/></svg></button>
-                <button class="ctrl-btn" id="repeat-btn" onclick="toggleRepeat()" title="Repeat">
-                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14M7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+                <button class="ctrl-btn" onclick="prevTrack()">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/>
+                    </svg>
+                </button>
+                <button class="play-main-btn" id="play-pause-btn" onclick="togglePlay()">
+                    <svg id="play-icon" viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z"/>
+                    </svg>
+                </button>
+                <button class="ctrl-btn" onclick="nextTrack()">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M7 6l8.5 6L7 18zm9 0h2v12h-2z"/>
+                    </svg>
+                </button>
+                <button class="ctrl-btn" id="repeat-btn" onclick="toggleRepeat()">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="17 1 21 5 17 9"/>
+                        <path d="M3 11V9a4 4 0 0 1 4-4h14M7 23 3 19 7 15"/>
+                        <path d="M21 13v2a4 4 0 0 1-4 4H3"/>
+                    </svg>
                 </button>
             </div>
             <div class="progress-row">
                 <span class="time" id="current-time">0:00</span>
                 <div class="progress-bar-container" onclick="seek(event)">
-                    <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-fill"></div>
+                    </div>
                 </div>
                 <span class="time" id="total-time">0:00</span>
             </div>
         </div>
 
         <div class="vol-row">
-            <span id="vol-icon" style="cursor: pointer;" onclick="toggleMute()">🔊</span>
+            <span id="vol-icon" onclick="toggleMute()">🔊</span>
             <div class="vol-bar-container" onclick="setVolume(event)">
-                <div class="vol-bar"><div class="vol-fill" id="volume-fill" style="width: 70%;"></div></div>
+                <div class="vol-bar">
+                    <div class="vol-fill" id="volume-fill" style="width: 70%;"></div>
+                </div>
             </div>
         </div>
     </footer>
 </div>
 
 <script>
-    // JS mantiqi o'zgarmadi, o'z holatida ishlaydi...
     const tracks = [
         {% for track in tracks %}
-        {
-            id: {{ track.id }},
-            name: "{{ track.title|escapejs }}",
-            artist: "{{ track.artist|escapejs }}",
-            icon: "{{ track.icon|escapejs }}",
-            src: "{{ track.audio_file.url }}"
-        }{% if not forloop.last %},{% endif %}
+            {
+                id: {{ track.id }},
+                name: "{{ track.title|escapejs }}",
+                artist: "{{ track.artist|escapejs }}",
+                {% if track.icon %} icon: "{{ track.icon.url|escapejs }}", {% else %} icon: "", {% endif %}
+                src: "{{ track.audio_file.url }}"
+            }{% if not forloop.last %},{% endif %}
         {% endfor %}
     ];
 
@@ -880,6 +865,7 @@
     const trackNameEl = document.getElementById('current-track-name');
     const trackArtistEl = document.getElementById('current-track-artist');
     const trackThumbEl = document.getElementById('current-track-thumb');
+    const trackPlaceholderEl = document.getElementById('current-track-thumb-placeholder');
     const playIcon = document.getElementById('play-icon');
     const progressFill = document.getElementById('progress-fill');
     const currentTimeEl = document.getElementById('current-time');
@@ -889,109 +875,87 @@
     const repeatBtn = document.getElementById('repeat-btn');
     const shuffleBtn = document.getElementById('shuffle-btn');
 
-    const homeContent = document.getElementById('home-content');
-    const searchContent = document.getElementById('search-content');
-    const navHome = document.getElementById('nav-home');
-    const navSearch = document.getElementById('nav-search');
-
     function showSection(section) {
         if (section === 'search') {
-            homeContent.style.display = 'none';
-            searchContent.style.display = 'block';
-            navHome.classList.remove('active');
-            navSearch.classList.add('active');
-            document.getElementById('search-input-field').focus();
+            document.getElementById('home-content').style.display = 'none';
+            document.getElementById('search-content').style.display = 'block';
+            document.getElementById('nav-home').classList.remove('active');
+            document.getElementById('nav-search').classList.add('active');
         } else {
-            searchContent.style.display = 'none';
-            homeContent.style.display = 'block';
-            navSearch.classList.remove('active');
-            navHome.classList.add('active');
+            document.getElementById('search-content').style.display = 'none';
+            document.getElementById('home-content').style.display = 'block';
+            document.getElementById('nav-search').classList.remove('active');
+            document.getElementById('nav-home').classList.add('active');
         }
-    }
-
-    function handleSearch(query) {
-        const resultsGrid = document.getElementById('search-results-grid');
-        const cleanQuery = query.toLowerCase().trim();
-
-        if (cleanQuery === "") {
-            resultsGrid.innerHTML = `<p style="color: var(--sp-gray); padding: 10px; font-size: 14px;">Type above to start searching...</p>`;
-            return;
-        }
-
-        const filteredTracks = tracks.filter(track =>
-            track.name.toLowerCase().includes(cleanQuery) ||
-            track.artist.toLowerCase().includes(cleanQuery)
-        );
-
-        if (filteredTracks.length === 0) {
-            resultsGrid.innerHTML = `<p style="color: var(--sp-gray); padding: 10px; font-size: 14px;">No tracks found for "${query}"</p>`;
-            return;
-        }
-
-        resultsGrid.innerHTML = filteredTracks.map(track => `
-            <div class="album-card" onclick="playTrackByDbId(${track.id})">
-                <div class="album-art" style="background: linear-gradient(135deg, #1e40af, #3b82f6);">
-                    ${track.icon}
-                    <div class="play-btn-overlay">
-                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                    </div>
-                </div>
-                <div class="album-name">${track.name}</div>
-                <div class="album-artist">${track.artist}</div>
-            </div>
-        `).join('');
     }
 
     function initPlayer() {
         if (tracks.length > 0) {
-            const track = tracks[currentTrackIndex];
-            trackNameEl.textContent = track.name;
-            trackArtistEl.textContent = track.artist;
-            trackThumbEl.textContent = track.icon;
-            audio.src = track.src;
+            updatePlayerUI(tracks[currentTrackIndex]);
+            audio.src = tracks[currentTrackIndex].src;
         }
     }
+
     window.onload = initPlayer;
 
     function playTrackByDbId(dbId) {
         const index = tracks.findIndex(t => t.id === dbId);
-        if (index !== -1) { playTrack(index); }
+        if (index !== -1) {
+            playTrack(index);
+        }
     }
 
-    function safePlayFromQuick(targetIndex) {
-        if (tracks.length === 0) return;
-        const index = targetIndex % tracks.length;
-        playTrack(index);
+    function updatePlayerUI(track) {
+        trackNameEl.textContent = track.name;
+        trackArtistEl.textContent = track.artist;
+        if (track.icon) {
+            trackThumbEl.src = track.icon;
+            trackThumbEl.style.display = 'block';
+            trackPlaceholderEl.style.display = 'none';
+        } else {
+            trackThumbEl.style.display = 'none';
+            trackPlaceholderEl.style.display = 'flex';
+        }
     }
 
     function playTrack(index) {
         if (tracks.length === 0 || index < 0 || index >= tracks.length) return;
         currentTrackIndex = index;
         const track = tracks[currentTrackIndex];
-        trackNameEl.textContent = track.name;
-        trackArtistEl.textContent = track.artist;
-        trackThumbEl.textContent = track.icon;
+        updatePlayerUI(track);
         audio.src = track.src;
-        audio.play().then(() => { isPlaying = true; updatePlayButton(); }).catch(err => console.log(err));
+        audio.play().then(() => {
+            isPlaying = true;
+            updatePlayButton();
+        });
     }
 
     function togglePlay() {
         if (tracks.length === 0) return;
-        if (!audio.src) { playTrack(0); return; }
-        if (isPlaying) { audio.pause(); isPlaying = false; }
-        else { audio.play().then(() => { isPlaying = true; updatePlayButton(); }).catch(err => console.log(err)); }
+        if (!audio.src) {
+            playTrack(0);
+            return;
+        }
+        if (isPlaying) {
+            audio.pause();
+            isPlaying = false;
+        } else {
+            audio.play().then(() => {
+                isPlaying = true;
+                updatePlayButton();
+            });
+        }
         updatePlayButton();
     }
 
     function updatePlayButton() {
-        if (isPlaying) { playIcon.innerHTML = `<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>`; }
-        else { playIcon.innerHTML = `<path d="M8 5v14l11-7z"/>`; }
+        playIcon.innerHTML = isPlaying ? `<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>` : `<path d="M8 5v14l11-7z"/>`;
     }
 
     function nextTrack() {
         if (tracks.length === 0) return;
-        if (isShuffle) { playTrack(Math.floor(Math.random() * tracks.length)); }
-        else { currentTrackIndex = (currentTrackIndex + 1) % tracks.length; playTrack(currentTrackIndex); }
+        currentTrackIndex = isShuffle ? Math.floor(Math.random() * tracks.length) : (currentTrackIndex + 1) % tracks.length;
+        playTrack(currentTrackIndex);
     }
 
     function prevTrack() {
@@ -1000,36 +964,44 @@
         playTrack(currentTrackIndex);
     }
 
-    function toggleRepeat() { isRepeat = !isRepeat; repeatBtn.classList.toggle('active', isRepeat); }
-    function toggleShuffle() { isShuffle = !isShuffle; shuffleBtn.classList.toggle('active', isShuffle); }
+    function toggleRepeat() {
+        isRepeat = !isRepeat;
+        repeatBtn.classList.toggle('active', isRepeat);
+    }
 
-    audio.addEventListener('loadedmetadata', () => { totalTimeEl.textContent = formatTime(audio.duration); });
+    function toggleShuffle() {
+        isShuffle = !isShuffle;
+        shuffleBtn.classList.toggle('active', isShuffle);
+    }
+
+    audio.addEventListener('loadedmetadata', () => {
+        totalTimeEl.textContent = formatTime(audio.duration);
+    });
     audio.addEventListener('timeupdate', () => {
         if (!audio.duration) return;
         progressFill.style.width = `${(audio.currentTime / audio.duration) * 100}%`;
         currentTimeEl.textContent = formatTime(audio.currentTime);
     });
-    audio.addEventListener('ended', () => { if (isRepeat) { audio.currentTime = 0; audio.play(); } else { nextTrack(); } });
+    audio.addEventListener('ended', () => {
+        isRepeat ? (audio.currentTime = 0, audio.play()) : nextTrack();
+    });
 
     function formatTime(seconds) {
-        if (isNaN(seconds)) return "0:00";
-        const min = Math.floor(seconds / 60); const sec = Math.floor(seconds % 60);
+        const min = Math.floor(seconds / 60);
+        const sec = Math.floor(seconds % 60);
         return `${min}:${sec < 10 ? '0' : ''}${sec}`;
     }
+
     function seek(event) {
-        if (!audio.duration) return;
         const rect = event.currentTarget.getBoundingClientRect();
         audio.currentTime = ((event.clientX - rect.left) / rect.width) * audio.duration;
     }
+
     function setVolume(event) {
         const rect = event.currentTarget.getBoundingClientRect();
         let vol = Math.max(0, Math.min(1, (event.clientX - rect.left) / rect.width));
-        audio.volume = vol; lastVolume = vol; volumeFill.style.width = `${vol * 100}%`;
-        volIcon.textContent = vol === 0 ? "🔈" : vol < 0.5 ? "🔉" : "🔊";
-    }
-    function toggleMute() {
-        if (audio.volume > 0) { lastVolume = audio.volume; audio.volume = 0; volumeFill.style.width = `0%`; volIcon.textContent = "🔈"; }
-        else { audio.volume = lastVolume; volumeFill.style.width = `${lastVolume * 100}%`; volIcon.textContent = lastVolume > 0.5 ? "🔊" : "🔉"; }
+        audio.volume = vol;
+        volumeFill.style.width = `${vol * 100}%`;
     }
 </script>
 </body>
