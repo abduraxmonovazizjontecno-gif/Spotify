@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<!DOCTYPE html><html lang="en"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spotify - Любимые треки: Kenzi Edition</title>
@@ -15,12 +13,12 @@
 
         :root {
             --bg-base: #121212;
-            --bg-surface: #0a0a0a;
-            --bg-surface-hover: #2a2a2a;
-            --sp-blue: #2563eb;
-            --sp-blue-light: #60a5fa;
+            --bg-surface: #181818;
+            --bg-surface-hover: rgba(255, 255, 255, 0.08);
+            --sp-green: #1ed760;
+            --sp-green-hover: #1fdf64;
             --text-base: #ffffff;
-            --text-subdued: #b3b3b3;
+            --text-subdued: #a7a7a7;
             --line-border: rgba(255, 255, 255, 0.1);
         }
 
@@ -34,20 +32,20 @@
             overflow-x: hidden;
         }
 
-        /* Spotify Header Banner (Liked Songs Style) */
+        /* Header Banner */
         .favourite-header-banner {
             display: flex;
             align-items: flex-end;
             gap: 24px;
             padding: 80px 32px 24px 32px;
-            background: linear-gradient(to bottom, #1e3a8a 0%, #121212 100%);
+            background: linear-gradient(to bottom, #22543d 0%, #121212 100%);
         }
 
         .big-heart-box {
             width: 192px;
             height: 192px;
-            border-radius: 4px;
-            background: linear-gradient(135deg, #311084 0%, #6122e6 100%);
+            border-radius: 8px;
+            background: linear-gradient(135deg, #065f46 0%, #10b981 100%);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -93,7 +91,7 @@
             color: var(--text-subdued);
         }
 
-        /* Action Bar (Play button row) */
+        /* Action Bar */
         .action-bar-row {
             padding: 24px 32px;
             display: flex;
@@ -105,20 +103,20 @@
             width: 56px;
             height: 56px;
             border-radius: 50%;
-            background-color: var(--sp-blue);
-            color: #ffffff;
+            background-color: var(--sp-green);
+            color: #000000;
             border: none;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-            transition: transform 0.2s ease, background-color 0.2s ease;
+            transition: transform 0.2s cubic-bezier(0.3, 0, 0, 1), background-color 0.2s ease;
         }
 
         .spotify-giant-play:hover {
             transform: scale(1.05);
-            background-color: #3b82f6;
+            background-color: var(--sp-green-hover);
         }
 
         .spotify-giant-play svg {
@@ -128,20 +126,44 @@
             margin-left: 3px;
         }
 
+        /* --- YANGI ORQAGA QAYTISH TUGMASI (PREMIUM DESIGN) --- */
         .back-nav-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
             font-size: 14px;
             font-weight: 700;
-            color: var(--text-subdued);
+            color: var(--text-base);
             text-decoration: none;
-            transition: color 0.2s;
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 10px 20px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .back-nav-link svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+            transition: transform 0.2s ease;
         }
 
         .back-nav-link:hover {
-            color: var(--text-base);
-            text-decoration: underline;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: scale(1.03);
         }
 
-        /* Spotify Professional Tracks Table */
+        .back-nav-link:hover svg {
+            transform: translateX(-4px); /* Chapga bir oz siljish effekti */
+        }
+
+        .back-nav-link:active {
+            transform: scale(0.98);
+        }
+
+        /* Tracks Table */
         .tracks-table-container {
             padding: 0 32px 40px 32px;
         }
@@ -163,16 +185,15 @@
         }
 
         .spotify-table tr {
-            transition: background-color 0.2s ease, opacity 0.3s ease;
+            transition: background-color 0.2s ease, opacity 0.3s ease, transform 0.3s ease;
         }
 
         .spotify-table tbody tr {
             cursor: pointer;
-            border-radius: 4px;
         }
 
         .spotify-table tbody tr:hover {
-            background-color: rgba(255, 255, 255, 0.08);
+            background-color: var(--bg-surface-hover);
         }
 
         .spotify-table td {
@@ -186,82 +207,9 @@
             color: var(--text-subdued);
             font-weight: 500;
             text-align: center;
+            position: relative;
         }
 
-        .col-title-block {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .track-mini-cover {
-            width: 40px;
-            height: 40px;
-            border-radius: 4px;
-            background: linear-gradient(135deg, #1e293b, var(--sp-blue));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-            flex-shrink: 0;
-        }
-
-        .track-naming {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-            min-width: 0;
-        }
-
-        .track-main-name {
-            font-size: 16px;
-            font-weight: 600;
-            color: var(--text-base);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .track-author-name {
-            font-size: 14px;
-            color: var(--text-subdued);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .col-album {
-            color: var(--text-subdued);
-            font-weight: 500;
-        }
-
-        .col-actions {
-            width: 100px;
-            text-align: right;
-        }
-
-        /* Active Spotify Heart Toggle Button */
-        .spotify-heart-toggle {
-            background: none;
-            border: none;
-            color: #1ed760; /* Spotify yashil rangli faol yurakcha */
-            cursor: pointer;
-            padding: 6px;
-            transition: transform 0.2s ease;
-        }
-
-        .spotify-heart-toggle:hover {
-            transform: scale(1.1);
-            color: #ef4444; /* O'chirishga shay turganda qizil rang effekti */
-        }
-
-        .spotify-heart-toggle svg {
-            width: 20px;
-            height: 20px;
-            fill: currentColor;
-        }
-
-        /* Empty State */
         .spotify-empty-state {
             text-align: center;
             padding: 80px 0;
@@ -273,19 +221,154 @@
             font-size: 20px;
             margin-bottom: 12px;
         }
-    </style>
-</head>
-<body>
+
+        /* === PREMIUM BUTTON ARENA === */
+        .button-arena-wrap {
+            padding: 40px 32px 64px;
+            background: linear-gradient(to bottom, transparent, #0a0a0a);
+        }
+
+        .button-arena-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .button-arena-title {
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .button-arena-sub {
+            color: var(--text-subdued);
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+            gap: 14px;
+        }
+
+        .arena-btn {
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 14px 12px;
+            min-height: 85px;
+            background: rgba(255, 255, 255, 0.03);
+            color: #fff;
+            cursor: pointer;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .arena-btn:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3), 0 0 15px rgba(255, 255, 255, 0.03);
+        }
+
+        .arena-btn:active {
+            transform: translateY(-1px) scale(0.97);
+        }
+
+        .arena-btn .arena-btn-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        .arena-btn .arena-btn-top span:first-child {
+            transition: transform 0.3s ease;
+        }
+
+        .arena-btn:hover .arena-btn-top span:first-child {
+            transform: rotate(15deg) scale(1.15);
+        }
+
+        .arena-btn .arena-btn-num {
+            color: var(--text-subdued);
+            font-size: 11px;
+            font-weight: 700;
+            background: rgba(255, 255, 255, 0.06);
+            padding: 2px 6px;
+            border-radius: 20px;
+        }
+
+        .arena-btn .arena-btn-label {
+            font-size: 13px;
+            font-weight: 600;
+            line-height: 1.2;
+            display: block;
+            text-align: left;
+            color: #e0e0e0;
+        }
+
+        .arena-btn.is-active {
+            background: rgba(30, 215, 96, 0.1);
+            border-color: var(--sp-green);
+            box-shadow: 0 8px 20px rgba(30, 215, 96, 0.2), inset 0 0 12px rgba(30, 215, 96, 0.1);
+        }
+
+        .arena-btn.is-active .arena-btn-num {
+            background: rgba(30, 215, 96, 0.2);
+            color: var(--sp-green);
+        }
+
+        .arena-btn.is-active .arena-btn-label {
+            color: var(--sp-green);
+        }
+
+        @media (max-width: 768px) {
+            .button-arena-wrap { padding: 24px 16px; }
+            .button-arena-title { font-size: 22px; }
+            .button-grid { grid-template-columns: repeat(auto-fill, minmax(95px, 1fr)); gap: 10px; }
+            .arena-btn { min-height: 75px; padding: 10px 8px; }
+        }
+
+        @media (max-width: 992px) {
+            .meta-main-title { font-size: 52px; }
+            .big-heart-box { width: 150px; height: 150px; font-size: 60px; }
+        }
+
+        @media (max-width: 768px) {
+            .favourite-header-banner { padding: 40px 20px 20px 20px; gap: 16px; }
+            .meta-main-title { font-size: 36px; letter-spacing: -1px; }
+            .big-heart-box { width: 120px; height: 120px; font-size: 45px; }
+            .tracks-table-container { padding: 0 16px 20px 16px; }
+            .action-bar-row { padding: 16px 20px; }
+            .col-album, th.hide-on-mobile, td.hide-on-mobile { display: none; }
+        }
+
+        @media (max-width: 480px) {
+            .favourite-header-banner { flex-direction: column; align-items: center; text-align: center; }
+            .meta-user-stats { justify-content: center; }
+            .col-index { width: 40px; }
+        }
+    </style></head><body>
 
     <header class="favourite-header-banner">
-        <div class="big-heart-box">💙</div>
+        <div class="big-heart-box">💚</div>
         <div class="header-meta-info">
             <span class="meta-playlist-tag">Плейлист</span>
             <h1 class="meta-main-title">Любимые треки</h1>
             <div class="meta-user-stats">
                 <span class="stat-username">Kenzi User</span>
                 <span class="stat-dot">•</span>
-                <span id="track-count">{{ favourite_tracks|length }}</span> треков
+                <span id="track-count">0</span> треков
             </div>
         </div>
     </header>
@@ -294,7 +377,11 @@
         <button class="spotify-giant-play" onclick="playTrack(0)" title="Воспроизвести">
             <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
         </button>
-        <a href="{% url 'menu' %}" class="back-nav-link">← Вернуться на главную</a>
+
+        <a href="/" class="back-nav-link">
+            <svg viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>
+            Главная страница
+        </a>
     </div>
 
     <div class="tracks-table-container">
@@ -303,31 +390,11 @@
                 <tr>
                     <th style="text-align: center;">#</th>
                     <th>Название</th>
-                    <th>Альбом / Жанр</th>
+                    <th class="hide-on-mobile">Альбом / Жанр</th>
                     <th style="text-align: right;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 16px;"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></th>
                 </tr>
             </thead>
             <tbody>
-                {% for track in favourite_tracks %}
-                <tr onclick="playTrack({{ forloop.index0 }})">
-                    <td class="col-index">{{ forloop.counter }}</td>
-                    <td>
-                        <div class="col-title-block">
-                            <div class="track-mini-cover">{{ track.icon }}</div>
-                            <div class="track-naming">
-                                <span class="track-main-name">{{ track.title }}</span>
-                                <span class="track-author-name">{{ track.artist }}</span>
-                            </div>
-                        </div>
-                    </td>
-                    <td class="col-album">Cyber Collection</td>
-                    <td class="col-actions" onclick="event.stopPropagation();">
-                        <button class="spotify-heart-toggle" onclick="removeFromFavorites({{ track.id }}, this)" title="Удалить из любимых">
-                            <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-                        </button>
-                    </td>
-                </tr>
-                {% empty %}
                 <tr>
                     <td colspan="4">
                         <div class="spotify-empty-state">
@@ -336,52 +403,57 @@
                         </div>
                     </td>
                 </tr>
-                {% endfor %}
             </tbody>
         </table>
     </div>
 
+    <section class="button-arena-wrap">
+        <div class="button-arena-head">
+            <div>
+                <h2 class="button-arena-title">⚡ Button Arena</h2>
+                <p class="button-arena-sub">Premium va minimal dizayndagi interaktiv tugmalar.</p>
+            </div>
+            <div class="button-arena-sub">Jami: <strong id="arena-count">1000</strong> ta tugma</div>
+        </div>
+        <div id="button-grid" class="button-grid"></div>
+    </section>
+
     <script>
-        // Pleyer bilan integratsiya va ijro qilish funksiyasi
+        // 1000 ta tugmani generatsiya qiluvchi toza va tezkor kod
+        function buildButtonArena(total = 1000) {
+            const grid = document.getElementById('button-grid');
+            const count = document.getElementById('arena-count');
+            if (!grid) return;
+            const icons = ['🔥','⚡','💚','🎵','🚀','✨','🎧','🌊','🧊','💥'];
+            const labels = ['Pulse', 'Wave', 'Beat', 'Echo', 'Nova', 'Rush', 'Drift', 'Bass', 'Sky', 'Volt'];
+            const fragment = document.createDocumentFragment();
+
+            for (let i = 1; i <= total; i++) {
+                const btn = document.createElement('button');
+                btn.className = 'arena-btn';
+                btn.type = 'button';
+                btn.innerHTML = `
+                    <span class="arena-btn-top">
+                        <span>${icons[i % icons.length]}</span>
+                        <span class="arena-btn-num">#${i}</span>
+                    </span>
+                    <span class="arena-btn-label">${labels[i % labels.length]} ${i}</span>
+                `;
+                btn.addEventListener('click', () => {
+                    btn.classList.toggle('is-active');
+                });
+                fragment.appendChild(btn);
+            }
+
+            grid.appendChild(fragment);
+            if (count) count.textContent = total;
+        }
+
         function playTrack(index) {
             console.log("Playing favourite track index:", index);
-            // Sening master pleyering bilan bog'lanish mantiqi shu yerga yoziladi
         }
 
-        // Sevimlilardan o'chirish funksiyasi (Dinamik effekt va hisoblagich bilan)
-        function removeFromFavorites(trackId, element) {
-            if(confirm("Вы действительно хотите удалить этот трек из любимых?")) {
-                const row = element.closest('tr');
-                row.style.opacity = '0';
-                row.style.transform = 'scale(0.95)';
-
-                setTimeout(() => {
-                    row.remove();
-
-                    // Trekar sonini real vaqtda yangilash paneli
-                    const countEl = document.getElementById('track-count');
-                    let currentCount = parseInt(countEl.innerText);
-                    if (currentCount > 0) {
-                        countEl.innerText = currentCount - 1;
-                    }
-
-                    // Agar hamma trek o'chib ketsa, bo'sh jadval xabari ko'rinadi
-                    const tbody = document.querySelector('.spotify-table tbody');
-                    if (tbody.children.length === 0) {
-                        tbody.innerHTML = `
-                            <tr>
-                                <td colspan="4">
-                                    <div class="spotify-empty-state">
-                                        <h3>Здесь пока ничего нет</h3>
-                                        <p>Кликните на иконку сердца у любого трека на главной странице, чтобы он появился здесь!</p>
-                                    </div>
-                                </td>
-                            </tr>
-                        `;
-                    }
-                }, 300);
-            }
-        }
+        buildButtonArena(1000);
     </script>
 </body>
 </html>

@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kenzi - Premium Music Experience</title>
+    <title>Kenzi - Premium Blue Experience</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
         * {
             margin: 0;
@@ -13,58 +13,80 @@
             box-sizing: border-box;
         }
 
+        /* Spotify Premium — Electric Blue Neon Ranglar Palitrasi */
         :root {
-            --sp-black: #0b0f19;
-            --sp-dark: #111827;
-            --sp-card: #1f2937;
-            --sp-blue: #2563eb;
-            --sp-blue-hover: #3b82f6;
-            --sp-blue-light: #60a5fa;
-            --sp-gray: #9ca3af;
-            --sp-white: #ffffff;
+            --sp-black: #05070f;         /* Haqiqiy koinot qorasi */
+            --sp-dark: #0b0f19;          /* Chuqur ko'k-qora panellar */
+            --sp-card: #111827;          /* Kartochkalar foni */
+            --sp-card-hover: #1f2937;    /* Karta ustiga borgandagi yorqinlik */
+            --sp-blue: #2563eb;          /* Siz so'ragan afsonaviy Elektr Ko'k rang */
+            --sp-blue-hover: #3b82f6;    /* Ko'k rangning hover holati */
+            --sp-blue-glow: rgba(37, 99, 235, 0.4); /* Neon effektlar uchun */
+            --sp-gray: #9ca3af;          /* Nozik va elegant matnlar */
+            --sp-white: #ffffff;         /* Sof oq rang */
+            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         body, .app-root {
-            font-family: 'DM Sans', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             background: var(--sp-black);
             color: var(--sp-white);
             -webkit-user-select: none;
             user-select: none;
         }
 
+        /* O'ta silliq va chiroyli premium skrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(37, 99, 235, 0.2);
+            border-radius: 10px;
+            transition: var(--transition-smooth);
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--sp-blue);
+            box-shadow: 0 0 10px var(--sp-blue);
+        }
+
         .app-root {
             display: grid;
-            grid-template-columns: 280px 1fr;
-            grid-template-rows: 1fr 95px;
+            grid-template-columns: 300px 1fr;
+            grid-template-rows: 1fr 100px;
             height: 100vh;
             overflow: hidden;
-            padding: 8px 8px 0 8px;
-            gap: 8px;
+            padding: 10px 10px 0 10px;
+            gap: 10px;
             background: #000000;
         }
 
-        /* Sidebar */
+        /* --- SIDEBAR DESIGN --- */
         .sidebar {
             background: var(--sp-black);
-            padding: 20px 12px;
+            padding: 0;
             grid-row: 1;
             overflow-y: auto;
             display: flex;
             flex-direction: column;
-            gap: 12px;
-            border-radius: 8px;
+            gap: 10px;
         }
 
         .sidebar-box {
-            background: #111827;
-            border-radius: 8px;
-            padding: 16px 12px;
+            background: var(--sp-dark);
+            border-radius: 12px;
+            padding: 24px 20px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
 
         .sp-logo {
-            padding: 0 12px 16px 12px;
+            padding: 0 4px 24px 4px;
             font-size: 24px;
-            font-weight: 700;
+            font-weight: 800;
             letter-spacing: -0.5px;
             color: var(--sp-white);
             display: flex;
@@ -74,181 +96,207 @@
         }
 
         .sp-logo svg {
-            fill: url(#blue-gradient);
-            filter: drop-shadow(0 0 8px rgba(37, 99, 235, 0.6));
+            fill: var(--sp-blue);
+            filter: drop-shadow(0 0 12px var(--sp-blue));
+            transition: var(--transition-smooth);
+        }
+
+        .sp-logo:hover svg {
+            transform: rotate(10deg) scale(1.1);
         }
 
         .nav-section {
             display: flex;
             flex-direction: column;
-            gap: 4px;
+            gap: 6px;
         }
 
         .nav-item {
             display: flex;
             align-items: center;
             gap: 16px;
-            padding: 12px 16px;
+            padding: 14px 16px;
             border-radius: 8px;
             cursor: pointer;
-            font-size: 15px;
+            font-size: 16px;
             font-weight: 700;
             color: var(--sp-gray);
-            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: var(--transition-smooth);
         }
 
-        .nav-item:hover, .nav-item.active {
+        .nav-item:hover {
             color: var(--sp-white);
-            background: #1f2937;
+            background: rgba(37, 99, 235, 0.08);
+            box-shadow: inset 3px 0 0 var(--sp-blue);
+            padding-left: 22px;
+        }
+
+        .nav-item.active {
+            color: var(--sp-white);
+            background: rgba(37, 99, 235, 0.15);
+            box-shadow: inset 4px 0 0 var(--sp-blue);
         }
 
         .nav-item svg {
-            width: 24px;
-            height: 24px;
+            width: 22px;
+            height: 22px;
             stroke: currentColor;
             fill: none;
-            stroke-width: 2.5;
+            stroke-width: 2.2;
         }
 
         .library-header {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 4px 12px;
+            padding: 4px 4px 14px 4px;
             color: var(--sp-gray);
-            font-size: 13px;
-            font-weight: 700;
-            letter-spacing: 0.5px;
+            font-size: 14px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .playlist-list {
             display: flex;
             flex-direction: column;
-            gap: 2px;
-            margin-top: 10px;
-            max-height: 250px;
-            overflow-y: auto;
+            gap: 6px;
+            margin-top: 6px;
         }
 
         .playlist-item {
-            padding: 10px 12px;
+            padding: 12px;
             font-size: 14px;
-            font-weight: 500;
+            font-weight: 600;
             color: var(--sp-gray);
             cursor: pointer;
-            border-radius: 6px;
-            transition: all 0.2s;
+            border-radius: 8px;
+            transition: var(--transition-smooth);
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
 
         .playlist-item:hover {
             color: var(--sp-white);
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.04);
+            padding-left: 18px;
         }
 
-        /* Main oyna */
+        /* --- MAIN PANELI --- */
         .main {
-            background: linear-gradient(180deg, #1e3a8a 0%, var(--sp-black) 40%);
+            background: linear-gradient(180deg, #111c3a 0%, var(--sp-black) 50%);
             overflow-y: auto;
             grid-row: 1;
             grid-column: 2;
-            border-radius: 8px;
+            border-radius: 12px;
             position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.02);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
         }
 
         .main-header {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 16px 32px;
+            padding: 20px 32px;
             position: sticky;
             top: 0;
-            background: rgba(11, 15, 25, 0.7);
-            backdrop-filter: blur(20px);
-            z-index: 10;
+            background: rgba(5, 7, 15, 0.6);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.02);
         }
 
         .nav-arrows {
             display: flex;
-            gap: 8px;
+            gap: 10px;
         }
 
         .arrow-btn {
-            width: 32px;
-            height: 32px;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
-            background: rgba(0, 0, 0, 0.7);
-            border: none;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             color: var(--sp-white);
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.2s;
+            transition: var(--transition-smooth);
         }
 
         .arrow-btn:hover {
-            transform: scale(1.05);
-            background: rgba(0, 0, 0, 0.9);
+            transform: scale(1.08);
+            background: var(--sp-blue);
+            box-shadow: 0 0 15px var(--sp-blue-glow);
         }
 
         .main-content {
-            padding: 24px 32px;
+            padding: 30px 32px;
         }
 
         .greeting {
-            font-size: 32px;
-            font-weight: 700;
-            margin-bottom: 24px;
-            letter-spacing: -0.5px;
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 28px;
+            letter-spacing: -1px;
+            background: linear-gradient(90deg, #ffffff, #a5b4fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        /* 6 talik Quick Picks dizayni */
+        /* --- QUICK PICKS --- */
         .quick-picks {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
             gap: 16px;
-            margin-bottom: 32px;
+            margin-bottom: 36px;
         }
 
         .quick-card {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background: rgba(255, 255, 255, 0.06);
-            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.02);
+            border-radius: 8px;
             overflow: hidden;
             cursor: pointer;
-            transition: background 0.3s ease;
+            transition: var(--transition-smooth);
             position: relative;
-            padding-right: 16px;
+            padding-right: 20px;
         }
 
         .quick-card:hover {
-            background: rgba(255, 255, 255, 0.12);
+            background: rgba(37, 99, 235, 0.1);
+            border-color: rgba(37, 99, 235, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
         }
 
         .quick-card-left {
             display: flex;
             align-items: center;
-            gap: 16px;
+            gap: 20px;
             min-width: 0;
         }
 
         .quick-img {
-            width: 80px;
-            height: 80px;
+            width: 86px;
+            height: 86px;
             flex-shrink: 0;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 32px;
-            box-shadow: 4px 0 15px rgba(0, 0, 0, 0.3);
+            font-size: 34px;
+            background: linear-gradient(135deg, #1e293b, var(--sp-blue));
+            box-shadow: 5px 0 15px rgba(0, 0, 0, 0.3);
         }
 
         .quick-title {
@@ -259,61 +307,64 @@
             text-overflow: ellipsis;
         }
 
-        /* Spotify Grid uslubi */
+        /* --- SECTIONS --- */
         .section-title {
-            font-size: 22px;
-            font-weight: 700;
-            margin: 32px 0 16px 0;
+            font-size: 26px;
+            font-weight: 800;
+            margin: 44px 0 20px 0;
             display: flex;
             justify-content: space-between;
             align-items: flex-end;
+            letter-spacing: -0.5px;
         }
 
         .section-title span {
             font-size: 14px;
             font-weight: 700;
-            color: var(--sp-gray);
+            color: var(--sp-blue);
             cursor: pointer;
+            transition: var(--transition-smooth);
         }
 
         .section-title span:hover {
-            text-decoration: underline;
+            color: var(--sp-white);
+            text-shadow: 0 0 10px var(--sp-blue);
         }
 
+        /* --- STUNNING MUSIC GRID --- */
         .spotify-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 16px;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 26px;
         }
 
-        /* KARTOCHKA ASOSIY BLOKI */
         .spotify-card {
-            background: #121824;
-            border-radius: 8px;
-            padding: 14px;
+            background: var(--sp-card);
+            border-radius: 10px;
+            padding: 18px;
             cursor: pointer;
             position: relative;
-            transition: background 0.3s ease;
+            transition: var(--transition-smooth);
+            border: 1px solid rgba(255, 255, 255, 0.01);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
         }
 
         .spotify-card:hover {
-            background: #1f2937;
+            background: var(--sp-card-hover);
+            transform: translateY(-5px);
+            border-color: rgba(37, 99, 235, 0.2);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 0 0 15px rgba(37, 99, 235, 0.1);
         }
 
         .card-img-wrapper {
             width: 100%;
             aspect-ratio: 1;
-            border-radius: 6px;
-            margin-bottom: 12px;
+            border-radius: 8px;
+            margin-bottom: 16px;
             position: relative;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
             overflow: hidden;
-            background: #1f2937;
-            transition: filter 0.3s ease;
-        }
-
-        .spotify-card:hover .card-img-wrapper {
-            filter: brightness(0.85);
+            background: #1e293b;
         }
 
         .card-img {
@@ -321,36 +372,40 @@
             height: 100%;
             object-fit: cover;
             display: block;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Artistlar uchun dumaloq rasm */
+        .spotify-card:hover .card-img {
+            transform: scale(1.05);
+        }
+
         .artist-circle {
             border-radius: 50% !important;
         }
 
-        /* TINIQ VA AKURATNO SPOTIFY PLAY TUGMASI */
+        /* KO'K RANGDAGI NEON PLAY TUGMASI */
         .play-btn-overlay {
             position: absolute;
-            bottom: 75px;
-            right: 22px;
-            width: 48px;
-            height: 48px;
+            bottom: 90px;
+            right: 26px;
+            width: 52px;
+            height: 52px;
             border-radius: 50%;
             background: var(--sp-blue);
             display: flex;
             align-items: center;
             justify-content: center;
             opacity: 0;
-            transform: translateY(8px);
-            transition: transform 0.25s cubic-bezier(0.3, 0, 0, 1), opacity 0.25s ease, background-color 0.2s ease;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+            transform: translateY(15px);
+            transition: all 0.35s cubic-bezier(0.3, 0, 0, 1);
+            box-shadow: 0 8px 25px var(--sp-blue-glow);
             z-index: 15;
         }
 
         .play-btn-overlay svg {
-            width: 22px;
-            height: 22px;
-            fill: #fff;
+            width: 24px;
+            height: 24px;
+            fill: #ffffff; /* Ichidagi play belgisi oq rangda yorishadi */
             margin-left: 3px;
         }
 
@@ -361,104 +416,132 @@
 
         .play-btn-overlay:hover {
             background: var(--sp-blue-hover) !important;
-            transform: scale(1.05) !important;
-            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4);
+            transform: scale(1.1) !important;
+            box-shadow: 0 0 25px var(--sp-blue);
         }
 
         .card-title {
-            font-size: 15px;
+            font-size: 16px;
             font-weight: 700;
-            margin-bottom: 4px;
+            margin-bottom: 6px;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
         }
 
         .card-subtitle {
-            font-size: 13px;
+            font-size: 14px;
             color: var(--sp-gray);
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
         }
 
-        /* Qidiruv */
+        /* --- SEARCH DESIGN --- */
         .search-container {
             display: none;
         }
 
         .search-box-wrapper {
             position: relative;
-            margin-bottom: 24px;
-            max-width: 400px;
+            margin-bottom: 36px;
+            max-width: 460px;
         }
 
         .search-input {
             width: 100%;
-            padding: 12px 20px 12px 48px;
-            background: #1f2937;
-            border: 1px solid transparent;
+            padding: 16px 28px;
+            background: #111827;
+            border: 1px solid rgba(255,255,255,0.05);
             border-radius: 50px;
             color: var(--sp-white);
-            font-size: 14px;
+            font-size: 15px;
             font-weight: 500;
             outline: none;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+            transition: var(--transition-smooth);
         }
 
-        /* Player Bar */
+        .search-input:focus {
+            background: #1f2937;
+            border-color: var(--sp-blue);
+            box-shadow: 0 0 20px var(--sp-blue-glow);
+        }
+
+        /* --- ELECTRIC BLUE PLAYER BAR (PASTKI PLAY PANEL) --- */
         .player-bar {
             grid-column: 1 / -1;
-            background: #000000;
+            background: var(--sp-dark);
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
             display: grid;
             grid-template-columns: 1fr 2fr 1fr;
             align-items: center;
-            padding: 0 16px;
+            padding: 0 24px;
+            z-index: 200;
+            box-shadow: 0 -10px 40px rgba(0,0,0,0.6);
         }
 
         .track-info {
             display: flex;
             align-items: center;
-            gap: 14px;
+            gap: 16px;
+            min-width: 0;
         }
 
         .track-thumb {
-            width: 56px;
-            height: 56px;
-            border-radius: 4px;
+            width: 60px;
+            height: 60px;
+            border-radius: 6px;
             flex-shrink: 0;
             object-fit: cover;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.5);
         }
 
         .track-thumb-placeholder {
-            width: 56px;
-            height: 56px;
-            border-radius: 4px;
-            background: linear-gradient(135deg, #2563eb, #60a5fa);
+            width: 60px;
+            height: 60px;
+            border-radius: 6px;
+            background: linear-gradient(135deg, #1e293b, #3b82f6);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
+            font-size: 26px;
             flex-shrink: 0;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.5);
         }
 
         .track-meta {
             display: flex;
             flex-direction: column;
-            gap: 2px;
+            gap: 4px;
             min-width: 0;
         }
 
         .track-name {
-            font-size: 14px;
-            font-weight: 600;
+            font-size: 15px;
+            font-weight: 700;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            cursor: pointer;
+        }
+
+        .track-name:hover {
+            color: var(--sp-blue-hover);
+            text-decoration: underline;
         }
 
         .track-artist {
-            font-size: 12px;
+            font-size: 13px;
             color: var(--sp-gray);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            cursor: pointer;
+        }
+
+        .track-artist:hover {
+            color: var(--sp-white);
         }
 
         .like-btn {
@@ -466,24 +549,36 @@
             border: none;
             color: var(--sp-gray);
             cursor: pointer;
-            padding: 4px;
+            padding: 8px;
+            transition: var(--transition-smooth);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .like-btn:hover {
+            color: var(--sp-blue);
+            transform: scale(1.1);
         }
 
         .like-btn.liked {
-            color: #ef4444;
+            color: var(--sp-blue) !important;
+            filter: drop-shadow(0 0 8px var(--sp-blue));
         }
 
         .like-btn svg {
-            width: 20px;
-            height: 20px;
+            width: 22px;
+            height: 22px;
             fill: currentColor;
         }
 
+        /* Player Controls & Extra Skip buttons */
         .player-controls {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
+            width: 100%;
         }
 
         .controls-row {
@@ -497,10 +592,22 @@
             border: none;
             color: var(--sp-gray);
             cursor: pointer;
+            transition: var(--transition-smooth);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .ctrl-btn:hover {
+            color: var(--sp-white);
+            transform: scale(1.05);
         }
 
         .ctrl-btn.active {
-            color: var(--sp-blue-light);
+            color: var(--sp-blue);
+            filter: drop-shadow(0 0 5px var(--sp-blue));
         }
 
         .ctrl-btn svg {
@@ -509,9 +616,10 @@
             fill: currentColor;
         }
 
+        /* Markaziy Oq play tugmasi */
         .play-main-btn {
-            width: 36px;
-            height: 36px;
+            width: 42px;
+            height: 42px;
             border-radius: 50%;
             background: var(--sp-white);
             border: none;
@@ -519,84 +627,122 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
+            transition: var(--transition-smooth);
+            color: #000000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .play-main-btn:hover {
+            transform: scale(1.08);
+            background: var(--sp-blue);
+            color: white;
+            box-shadow: 0 0 20px var(--sp-blue);
         }
 
         .play-main-btn svg {
-            width: 18px;
-            height: 18px;
+            width: 20px;
+            height: 20px;
             fill: currentColor;
         }
 
+        /* Progress Bar (Slayder chizig'i) */
         .progress-row {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             width: 100%;
-            max-width: 600px;
+            max-width: 580px;
         }
 
         .time {
-            font-size: 11px;
+            font-size: 12px;
             color: var(--sp-gray);
+            min-width: 38px;
+            text-align: center;
+            font-variant-numeric: tabular-nums;
         }
 
         .progress-bar-container {
             flex: 1;
-            padding: 8px 0;
+            padding: 10px 0;
             cursor: pointer;
         }
 
-        .progress-bar {
-            height: 4px;
-            background: #4b5563;
-            border-radius: 2px;
+        .progress-bar, .vol-bar {
+            height: 5px;
+            background: #374151;
+            border-radius: 3px;
             width: 100%;
+            position: relative;
         }
 
-        .progress-fill {
+        .progress-fill, .vol-fill {
             height: 100%;
             background: var(--sp-white);
-            border-radius: 2px;
+            border-radius: 3px;
             width: 0%;
+            position: relative;
+            transition: background-color 0.1s;
+        }
+
+        /* Slayder ustiga borgandagi daxshat Neon Ko'k effekt */
+        .progress-bar-container:hover .progress-fill,
+        .vol-bar-container:hover .vol-fill {
+            background: var(--sp-blue);
+            box-shadow: 0 0 10px var(--sp-blue);
+        }
+
+        .progress-fill::after, .vol-fill::after {
+            content: '';
+            position: absolute;
+            right: -6px;
+            top: -4px;
+            width: 13px;
+            height: 13px;
+            background: var(--sp-white);
+            border-radius: 50%;
+            opacity: 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+            transition: opacity 0.15s ease;
+        }
+
+        .progress-bar-container:hover .progress-fill::after,
+        .vol-bar-container:hover .vol-fill::after {
+            opacity: 1;
         }
 
         .vol-row {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 14px;
             width: 100%;
-            max-width: 130px;
+            max-width: 150px;
             justify-self: end;
         }
 
         .vol-bar-container {
             flex: 1;
-            padding: 8px 0;
+            padding: 10px 0;
             cursor: pointer;
-        }
-
-        .vol-bar {
-            height: 4px;
-            background: #4b5563;
-            border-radius: 2px;
-        }
-
-        .vol-fill {
-            height: 100%;
-            width: 70%;
-            background: var(--sp-white);
-            border-radius: 2px;
         }
 
         .premium-login-btn {
-            background: var(--sp-white);
+            background: var(--sp-blue);
             border: none;
             border-radius: 30px;
-            padding: 8px 24px;
+            padding: 12px 28px;
             font-size: 14px;
             font-weight: 700;
-            color: #000;
+            color: white;
             cursor: pointer;
+            transition: var(--transition-smooth);
+            box-shadow: 0 4px 15px var(--sp-blue-glow);
+        }
+
+        .premium-login-btn:hover {
+            transform: scale(1.05);
+            background: var(--sp-blue-hover);
+            box-shadow: 0 0 25px var(--sp-blue);
         }
     </style>
 </head>
@@ -606,16 +752,10 @@
     <aside class="sidebar">
         <div class="sidebar-box">
             <div class="sp-logo">
-                <svg width="26" height="26" viewBox="0 0 24 24">
-                    <defs>
-                        <linearGradient id="blue-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stop-color="#2563eb"/>
-                            <stop offset="100%" stop-color="#60a5fa"/>
-                        </linearGradient>
-                    </defs>
+                <svg width="28" height="28" viewBox="0 0 24 24">
                     <path d="M4 10v4h2v-4H4zm3-4v12h2V6H7zm4-3v18h2V3h-2zm4 5v8h2V8h-2zm3 4v4h2v-4h-2z"/>
                 </svg>
-                Kenzi
+                Kenzi Blue
             </div>
             <nav class="nav-section">
                 <div class="nav-item active" id="nav-home" onclick="showSection('home')">
@@ -638,11 +778,9 @@
         <div class="sidebar-box" style="flex: 1;">
             <div class="library-header"><span>📚 Your Library</span></div>
             <div class="playlist-list">
+                <div class="playlist-item" onclick="window.location.href='{% url 'favourite' %}'">💙 <span>Favorite Tracks</span></div>
                 {% for category in categories %}
                     <div class="playlist-item">🎵 <span>{{ category.name }}</span></div>
-                {% empty %}
-                    <div class="playlist-item" onclick="window.location.href='{% url 'favourite' %}'">💙 <span>Favorite Tracks</span>
-                    </div>
                 {% endfor %}
             </div>
         </div>
@@ -651,13 +789,13 @@
     <main class="main">
         <div class="main-header">
             <div class="nav-arrows">
-                <button class="arrow-btn">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                <button class="arrow-btn" onclick="history.back()">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
                         <polyline points="15 18 9 12 15 6"/>
                     </svg>
                 </button>
-                <button class="arrow-btn">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                <button class="arrow-btn" onclick="history.forward()">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
                         <polyline points="9 18 15 12 9 6"/>
                     </svg>
                 </button>
@@ -668,13 +806,13 @@
         </div>
 
         <div class="main-content" id="home-content">
-            <div class="greeting">Welcome to Kenzi 👋</div>
+            <div class="greeting">Welcome to Kenzi Premium 👋</div>
 
             <div class="quick-picks">
                 <div class="quick-card" onclick="window.location.href='{% url 'favourite' %}'">
                     <div class="quick-card-left">
-                        <div class="quick-img" style="background: linear-gradient(135deg, #1e3a8a, #3b82f6);">🎶</div>
-                        <div class="quick-title">Favorite Tracks</div>
+                        <div class="quick-img">🎶</div>
+                        <div class="quick-title">Favorite Tracks (Musiqalarim)</div>
                     </div>
                 </div>
             </div>
@@ -687,13 +825,12 @@
                             {% if track.icon %}
                                 <img src="{{ track.icon.url }}" alt="{{ track.title }}" class="card-img">
                             {% else %}
-                                <div style="width:100%; height:100%; background:#2563eb; display:flex; align-items:center; justify-content:center; font-size:32px;">
+                                <div style="width:100%; height:100%; background:var(--sp-blue); display:flex; align-items:center; justify-content:center; font-size:32px;">
                                     🎵
                                 </div>
                             {% endif %}
                         </div>
-                        <div class="play-btn-overlay"
-                             onclick="event.stopPropagation(); playTrackByDbId({{ track.id }})">
+                        <div class="play-btn-overlay" onclick="event.stopPropagation(); playTrackByDbId({{ track.id }})">
                             <svg viewBox="0 0 24 24">
                                 <path d="M8 5v14l11-7z"/>
                             </svg>
@@ -714,7 +851,7 @@
                             {% if artist.image %}
                                 <img src="{{ artist.image.url }}" alt="{{ artist.name }}" class="card-img">
                             {% else %}
-                                <div style="width:100%; height:100%; background:#1f2937; display:flex; align-items:center; justify-content:center; font-size:32px;">
+                                <div style="width:100%; height:100%; background:#1e293b; display:flex; align-items:center; justify-content:center; font-size:32px;">
                                     🎤
                                 </div>
                             {% endif %}
@@ -735,12 +872,12 @@
             <div class="section-title">Yangi Albomlar <span>See all</span></div>
             <div class="spotify-grid">
                 {% for album in albums %}
-                    <div class="spotify-card">
+                    <div class="spotify-card" onclick="window.location.href='/album/{{ album.id }}/'">
                         <div class="card-img-wrapper">
                             {% if album.cover %}
                                 <img src="{{ album.cover.url }}" alt="{{ album.title }}" class="card-img">
                             {% else %}
-                                <div style="width:100%; height:100%; background:#4b5563; display:flex; align-items:center; justify-content:center; font-size:32px;">
+                                <div style="width:100%; height:100%; background:#374151; display:flex; align-items:center; justify-content:center; font-size:32px;">
                                     💿
                                 </div>
                             {% endif %}
@@ -760,7 +897,7 @@
         </div>
 
         <div class="main-content search-container" id="search-content">
-            <div class="greeting">Search</div>
+            <div class="greeting">Search Engine</div>
             <div class="search-box-wrapper">
                 <input type="text" id="search-input-field" class="search-input"
                        placeholder="What do you want to listen to?" oninput="handleSearch(this.value)">
@@ -786,8 +923,8 @@
 
         <div class="player-controls">
             <div class="controls-row">
-                <button class="ctrl-btn" id="shuffle-btn" onclick="toggleShuffle()">
-                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                <button class="ctrl-btn" id="shuffle-btn" onclick="toggleShuffle()" title="Aralashtirib ijro etish">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5">
                         <polyline points="16 3 21 3 21 8"/>
                         <line x1="4" y1="20" x2="21" y2="3"/>
                         <polyline points="21 16 21 21 16 21"/>
@@ -795,29 +932,42 @@
                         <line x1="4" y1="4" x2="9" y2="9"/>
                     </svg>
                 </button>
-                <button class="ctrl-btn" onclick="prevTrack()">
+
+                <button class="ctrl-btn" onclick="skipTime(-10)" title="-10 sekund orqaga">
+                    <span style="font-size:12px; font-weight:800;">-10s</span>
+                </button>
+
+                <button class="ctrl-btn" onclick="prevTrack()" title="Oldingi trek">
                     <svg viewBox="0 0 24 24">
                         <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/>
                     </svg>
                 </button>
-                <button class="play-main-btn" id="play-pause-btn" onclick="togglePlay()">
+
+                <button class="play-main-btn" id="play-pause-btn" onclick="togglePlay()" title="Play / Pause">
                     <svg id="play-icon" viewBox="0 0 24 24">
                         <path d="M8 5v14l11-7z"/>
                     </svg>
                 </button>
-                <button class="ctrl-btn" onclick="nextTrack()">
+
+                <button class="ctrl-btn" onclick="nextTrack()" title="Keyingi trek">
                     <svg viewBox="0 0 24 24">
                         <path d="M7 6l8.5 6L7 18zm9 0h2v12h-2z"/>
                     </svg>
                 </button>
-                <button class="ctrl-btn" id="repeat-btn" onclick="toggleRepeat()">
-                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+
+                <button class="ctrl-btn" onclick="skipTime(10)" title="+10 sekund oldinga">
+                    <span style="font-size:12px; font-weight:800;">+10s</span>
+                </button>
+
+                <button class="ctrl-btn" id="repeat-btn" onclick="toggleRepeat()" title="Takrorlash">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5">
                         <polyline points="17 1 21 5 17 9"/>
                         <path d="M3 11V9a4 4 0 0 1 4-4h14M7 23 3 19 7 15"/>
                         <path d="M21 13v2a4 4 0 0 1-4 4H3"/>
                     </svg>
                 </button>
             </div>
+
             <div class="progress-row">
                 <span class="time" id="current-time">0:00</span>
                 <div class="progress-bar-container" onclick="seek(event)">
@@ -830,10 +980,10 @@
         </div>
 
         <div class="vol-row">
-            <span id="vol-icon" onclick="toggleMute()">🔊</span>
+            <span id="vol-icon" onclick="toggleMute()" style="cursor: pointer; font-size: 15px;">🔊</span>
             <div class="vol-bar-container" onclick="setVolume(event)">
                 <div class="vol-bar">
-                    <div class="vol-fill" id="volume-fill" style="width: 70%;"></div>
+                    <div class="vol-fill" id="volume-fill" style="width: 75%;"></div>
                 </div>
             </div>
         </div>
@@ -841,6 +991,7 @@
 </div>
 
 <script>
+    // Django database massivi
     const tracks = [
         {% for track in tracks %}
             {
@@ -857,11 +1008,12 @@
     let isPlaying = false;
     let isRepeat = false;
     let isShuffle = false;
-    let lastVolume = 0.7;
+    let lastVolume = 0.75;
 
     const audio = new Audio();
     audio.volume = lastVolume;
 
+    // Dom elementlarini ulaymiz
     const trackNameEl = document.getElementById('current-track-name');
     const trackArtistEl = document.getElementById('current-track-artist');
     const trackThumbEl = document.getElementById('current-track-thumb');
@@ -875,6 +1027,7 @@
     const repeatBtn = document.getElementById('repeat-btn');
     const shuffleBtn = document.getElementById('shuffle-btn');
 
+    // Bo'limlarni almashish funksiyasi
     function showSection(section) {
         if (section === 'search') {
             document.getElementById('home-content').style.display = 'none';
@@ -889,6 +1042,7 @@
         }
     }
 
+    // Pleyerni ishga tushirish qismi
     function initPlayer() {
         if (tracks.length > 0) {
             updatePlayerUI(tracks[currentTrackIndex]);
@@ -927,7 +1081,7 @@
         audio.play().then(() => {
             isPlaying = true;
             updatePlayButton();
-        });
+        }).catch(err => console.log("Ijro xatoligi:", err));
     }
 
     function togglePlay() {
@@ -943,7 +1097,7 @@
             audio.play().then(() => {
                 isPlaying = true;
                 updatePlayButton();
-            });
+            }).catch(err => console.log("Xatolik:", err));
         }
         updatePlayButton();
     }
@@ -964,6 +1118,15 @@
         playTrack(currentTrackIndex);
     }
 
+    // SIZ SO'RAGAN VAQTNI SIKUNDLARGA SURISH FUNKSIYASI (Oldinga/Orqaga o'tkazish)
+    function skipTime(seconds) {
+        if (!audio.src || isNaN(audio.duration)) return;
+        let newTime = audio.currentTime + seconds;
+        if (newTime < 0) newTime = 0;
+        if (newTime > audio.duration) newTime = audio.duration;
+        audio.currentTime = newTime;
+    }
+
     function toggleRepeat() {
         isRepeat = !isRepeat;
         repeatBtn.classList.toggle('active', isRepeat);
@@ -977,24 +1140,31 @@
     audio.addEventListener('loadedmetadata', () => {
         totalTimeEl.textContent = formatTime(audio.duration);
     });
+
     audio.addEventListener('timeupdate', () => {
         if (!audio.duration) return;
         progressFill.style.width = `${(audio.currentTime / audio.duration) * 100}%`;
         currentTimeEl.textContent = formatTime(audio.currentTime);
     });
+
     audio.addEventListener('ended', () => {
         isRepeat ? (audio.currentTime = 0, audio.play()) : nextTrack();
     });
 
     function formatTime(seconds) {
+        if (isNaN(seconds)) return "0:00";
         const min = Math.floor(seconds / 60);
         const sec = Math.floor(seconds % 60);
         return `${min}:${sec < 10 ? '0' : ''}${sec}`;
     }
 
+    // SLAYDER CHIZIG'IDAN ISTALGAN VAQTGA O'TKAZISH FUNKSIYASI (Masalan: 1:00 yoki 2:23 ustiga bossa o'tadi)
     function seek(event) {
+        if (!audio.duration) return;
         const rect = event.currentTarget.getBoundingClientRect();
-        audio.currentTime = ((event.clientX - rect.left) / rect.width) * audio.duration;
+        const clickPositionX = event.clientX - rect.left;
+        const width = rect.width;
+        audio.currentTime = (clickPositionX / width) * audio.duration;
     }
 
     function setVolume(event) {
@@ -1002,6 +1172,62 @@
         let vol = Math.max(0, Math.min(1, (event.clientX - rect.left) / rect.width));
         audio.volume = vol;
         volumeFill.style.width = `${vol * 100}%`;
+        if (vol === 0) {
+            volIcon.textContent = "🔇";
+        } else if (vol < 0.4) {
+            volIcon.textContent = "🔈";
+        } else {
+            volIcon.textContent = "🔊";
+        }
+    }
+
+    function toggleMute() {
+        if (audio.volume > 0) {
+            lastVolume = audio.volume;
+            audio.volume = 0;
+            volumeFill.style.width = `0%`;
+            volIcon.textContent = "🔇";
+        } else {
+            audio.volume = lastVolume;
+            volumeFill.style.width = `${lastVolume * 100}%`;
+            volIcon.textContent = "🔊";
+        }
+    }
+
+    // Front qidiruv algoritmi
+    function handleSearch(query) {
+        const grid = document.getElementById('search-results-grid');
+        grid.innerHTML = '';
+        if (!query.trim()) return;
+
+        const filtered = tracks.filter(t =>
+            t.name.toLowerCase().includes(query.toLowerCase()) ||
+            t.artist.toLowerCase().includes(query.toLowerCase())
+        );
+
+        if (filtered.length === 0) {
+            grid.innerHTML = '<p style="color: var(--sp-gray); font-size: 14px; padding: 10px;">Hech narsa topilmadi.</p>';
+            return;
+        }
+
+        filtered.forEach(track => {
+            const card = document.createElement('div');
+            card.className = 'spotify-card';
+            card.onclick = () => playTrackByDbId(track.id);
+
+            let imgHtml = track.icon ? `<img src="${track.icon}" alt="${track.name}" class="card-img">` :
+                          `<div style="width:100%; height:100%; background:var(--sp-blue); display:flex; align-items:center; justify-content:center; font-size:32px;">🎵</div>`;
+
+            card.innerHTML = `
+                <div class="card-img-wrapper">${imgHtml}</div>
+                <div class="play-btn-overlay" onclick="event.stopPropagation(); playTrackByDbId(${track.id})">
+                    <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <div class="card-title">${track.name}</div>
+                <div class="card-subtitle">${track.artist}</div>
+            `;
+            grid.appendChild(card);
+        });
     }
 </script>
 </body>
